@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from './user.service';
-import { User } from './models/user.model';
+import { User } from './entities/user.entity';
 
 const mockRepository = () => ({
   create: jest.fn(),
@@ -34,20 +34,21 @@ describe('UserService', () => {
   });
 
   describe('create', () => {
-    it('should create and save a new recipe', async () => {
+    it('should create and save a new user', async () => {
       const newUser = {
         id: 1,
-        name: 'User 1',
+        username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
       };
-      const expectedUser = { id: 1, ...newUser };
-      jest.spyOn(repository, 'save').mockResolvedValue(expectedUser);
+      jest.spyOn(repository, 'create').mockReturnValue(newUser);
 
+      jest.spyOn(repository, 'save').mockResolvedValue(newUser);
+      jest.spyOn(service, 'findOneById').mockResolvedValue(newUser);
       const result = await service.create(newUser);
 
       expect(repository.save).toHaveBeenCalledWith(newUser);
-      expect(result).toEqual(expectedUser);
+      expect(result).toEqual(newUser);
     });
   });
 
@@ -55,7 +56,7 @@ describe('UserService', () => {
     it('should find a user by id', async () => {
       const expectedUser = {
         id: 1,
-        name: 'User 1',
+        username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
       };
@@ -73,19 +74,19 @@ describe('UserService', () => {
       const users = [
         {
           id: 1,
-          name: 'User 1',
+          username: 'User 1',
           email: 'test@test.cq',
           password: '123456',
         },
         {
           id: 2,
-          name: 'User 2',
+          username: 'User 2',
           email: 'test@test.cq',
           password: '123456',
         },
         {
           id: 3,
-          name: 'User 3',
+          username: 'User 3',
           email: 'test@test.cq',
           password: '123456',
         },
@@ -106,7 +107,7 @@ describe('UserService', () => {
     it('should update a user by id', async () => {
       const updatedUser = {
         id: 1,
-        name: 'User 1',
+        username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
       };
@@ -130,7 +131,7 @@ describe('UserService', () => {
     it('should delete a recipe', async () => {
       const mockUser = {
         id: 1,
-        name: 'User 1',
+        username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
       };

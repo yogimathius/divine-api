@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
-import { User } from './models/user.model';
+import { User } from './entities/user.entity';
 import { NewUserInput } from './dto/new-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { UsersArgs } from './dto/users.args';
@@ -44,7 +44,7 @@ describe('UserResolver', () => {
     it('should return a user by id', async () => {
       const expectedUser: User = {
         id: 1,
-        name: 'New User',
+        username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
@@ -62,19 +62,19 @@ describe('UserResolver', () => {
       const expectedUsers: User[] = [
         {
           id: 1,
-          name: 'New User',
+          username: 'New User',
           email: 'test@test.ca',
           password: '123456',
         },
         {
           id: 2,
-          name: 'New User',
+          username: 'New User',
           email: 'test@test.ca',
           password: '123456',
         },
         {
           id: 3,
-          name: 'New User',
+          username: 'New User',
           email: 'test@test.ca',
           password: '123456',
         },
@@ -93,7 +93,7 @@ describe('UserResolver', () => {
     it('should create a new user', async () => {
       const newUserData: NewUserInput = {
         id: 1,
-        name: 'New User',
+        username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
@@ -112,7 +112,7 @@ describe('UserResolver', () => {
       const userId = 1;
       const updateUserInput: UpdateUserInput = {
         id: userId,
-        name: 'New User',
+        username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
@@ -131,17 +131,21 @@ describe('UserResolver', () => {
       // Create a new user to delete
       const newUser: NewUserInput = {
         id: 1,
-        name: 'New User',
+        username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
+      jest.spyOn(repository, 'create').mockReturnValue(newUser);
+
       jest.spyOn(repository, 'save').mockResolvedValue({ id: 1, ...newUser });
+      jest.spyOn(service, 'findOneById').mockResolvedValueOnce(newUser);
 
       const user = await service.create(newUser);
       jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(user);
 
       const mockDeleteResult = { affected: 1, raw: null };
       jest.spyOn(repository, 'delete').mockResolvedValue(mockDeleteResult);
+
       // Call the deleteUser mutation
       const deleted = await resolver.deleteUser(user.id);
 
