@@ -6,7 +6,7 @@ import { User } from './models/user.model';
 import { UserRepository } from './repositories/user.repository';
 
 @Injectable()
-export class RecipesService {
+export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: UserRepository,
