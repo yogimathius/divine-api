@@ -13,11 +13,11 @@ describe('User Entity', () => {
     expect(user.id).toEqual(1);
   });
 
-  it('should have a name', () => {
+  it('should have a username', () => {
     const user = new User();
-    expect(user.name).toBeUndefined();
-    user.name = 'Test User';
-    expect(user.name).toEqual('Test User');
+    expect(user.username).toBeUndefined();
+    user.username = 'Test User';
+    expect(user.username).toEqual('Test User');
   });
 
   it('should have an optional email', () => {

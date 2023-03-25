@@ -10,7 +10,7 @@ export class NewUserInput {
 
   @Field()
   @MaxLength(30)
-  name: string;
+  username: string;
 
   @Field()
   email: string;

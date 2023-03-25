@@ -8,7 +8,7 @@ export class UpdateUserInput {
 
   @MaxLength(30)
   @IsOptional()
-  name: string;
+  username: string;
 
   @Field()
   email: string;
