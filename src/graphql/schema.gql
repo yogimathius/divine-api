@@ -1,0 +1,32 @@
+"""
+user
+"""
+type User {
+  id: ID!
+  name: String
+  email: String!
+  password: String!
+}
+
+type Query {
+  user(id: Float!): User!
+  users(page: Int! = 1, limit: Int! = 10): [User!]!
+}
+
+type Mutation {
+  createUser(newUserData: NewUserInput!): User!
+  updateUser(id: Float!, updateUserInput: UpdateUserInput!): User!
+  deleteUser(id: Float!): Boolean!
+}
+
+input NewUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  id: Float!
+  email: String!
+  password: String!
+}
