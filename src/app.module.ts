@@ -1,12 +1,9 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { GraphQLModule } from '@nestjs/graphql';
 import { DatabaseModule } from './database/database.module';
-import { UserRepository } from './user/repositories/user.repository';
 import { UserModule } from './user/user.module';
-import { UserService } from './user/user.service';
 
 @Module({
   imports: [
@@ -19,9 +16,9 @@ import { UserService } from './user/user.service';
         autoSchemaFile: 'schema.gql',
       }),
     }),
-    UserModule,
     DatabaseModule,
+    UserModule,
   ],
-  providers: [UserService, UserRepository, ConfigService],
+  providers: [],
 })
 export class AppModule {}

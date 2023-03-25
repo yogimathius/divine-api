@@ -1,6 +1,8 @@
-"""
-user
-"""
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""user """
 type User {
   id: ID!
   name: String
