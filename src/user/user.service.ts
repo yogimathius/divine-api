@@ -47,6 +47,13 @@ export class UserService {
     return this.userRepository.findOneBy({ id });
   }
 
+  async findBy(field: string, value: string): Promise<User | undefined> {
+    const user = await this.userRepository.findOne({
+      where: { [field]: value },
+    });
+    return user;
+  }
+
   async findAll(usersArgs: UsersArgs): Promise<User[]> {
     const { page, limit } = usersArgs;
     return this.userRepository.find({
@@ -69,5 +76,9 @@ export class UserService {
     const result = await this.userRepository.delete(id);
 
     return result.affected > 0;
+  }
+
+  findUserSignIn(username: string): Promise<User | undefined> {
+    return this.userRepository.findOneBy({ username });
   }
 }

@@ -8,6 +8,14 @@ type User {
   username: String!
   email: String!
   password: String!
+  enabled: Boolean!
+}
+
+type AuthPayload {
+  id: String!
+  token: String!
+  expiration: Float!
+  user: User!
 }
 
 type Query {
@@ -16,9 +24,15 @@ type Query {
 }
 
 type Mutation {
+  login(input: AuthCredentialsDto!): AuthPayload!
   createUser(newUserData: NewUserInput!): User!
   updateUser(id: Float!, updateUserInput: UpdateUserInput!): User!
   deleteUser(id: Float!): Boolean!
+}
+
+input AuthCredentialsDto {
+  username: String!
+  password: String!
 }
 
 input NewUserInput {

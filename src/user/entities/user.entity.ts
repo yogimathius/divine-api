@@ -19,4 +19,24 @@ export class User {
   @Column()
   @Field()
   password: string;
+
+  @Column({ default: false })
+  @Field()
+  enabled: boolean;
+}
+
+@ObjectType()
+export class AuthPayload {
+  @Field()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Field()
+  token: string;
+
+  @Field()
+  expiration: number;
+
+  @Field()
+  user: User;
 }

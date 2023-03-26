@@ -4,10 +4,6 @@ import { Exclude } from 'class-transformer';
 
 @InputType()
 export class NewUserInput {
-  @Exclude()
-  @IsOptional()
-  id: number;
-
   @Field()
   @MaxLength(30)
   username: string;

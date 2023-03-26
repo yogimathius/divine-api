@@ -2,6 +2,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { GraphQLModule } from '@nestjs/graphql';
+import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 
@@ -17,8 +18,8 @@ import { UserModule } from './user/user.module';
       }),
     }),
     DatabaseModule,
+    AuthModule,
     UserModule,
   ],
-  providers: [],
 })
 export class AppModule {}

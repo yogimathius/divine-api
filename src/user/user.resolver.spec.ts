@@ -47,6 +47,7 @@ describe('UserResolver', () => {
         username: 'New User',
         email: 'test@test.ca',
         password: '123456',
+        enabled: true,
       };
       jest.spyOn(service, 'findOneById').mockResolvedValue(expectedUser);
 
@@ -65,18 +66,21 @@ describe('UserResolver', () => {
           username: 'New User',
           email: 'test@test.ca',
           password: '123456',
+          enabled: true,
         },
         {
           id: 2,
           username: 'New User',
           email: 'test@test.ca',
           password: '123456',
+          enabled: true,
         },
         {
           id: 3,
           username: 'New User',
           email: 'test@test.ca',
           password: '123456',
+          enabled: true,
         },
       ];
       const usersArgs: UsersArgs = { page: 1, limit: 10 };
@@ -92,12 +96,11 @@ describe('UserResolver', () => {
   describe('createUser', () => {
     it('should create a new user', async () => {
       const newUserData: NewUserInput = {
-        id: 1,
         username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
-      const expectedUser: User = { id: 1, ...newUserData };
+      const expectedUser: User = { id: 1, enabled: true, ...newUserData };
       jest.spyOn(service, 'create').mockResolvedValue(expectedUser);
 
       const result = await resolver.createUser(newUserData);
@@ -116,7 +119,11 @@ describe('UserResolver', () => {
         email: 'test@test.ca',
         password: '123456',
       };
-      const expectedUser: User = { id: userId, ...updateUserInput };
+      const expectedUser: User = {
+        id: userId,
+        enabled: true,
+        ...updateUserInput,
+      };
       jest.spyOn(service, 'update').mockResolvedValue(expectedUser);
 
       const result = await resolver.updateUser(userId, updateUserInput);
@@ -130,15 +137,20 @@ describe('UserResolver', () => {
     it('should delete a user', async () => {
       // Create a new user to delete
       const newUser: NewUserInput = {
-        id: 1,
         username: 'New User',
         email: 'test@test.ca',
         password: '123456',
       };
-      jest.spyOn(repository, 'create').mockReturnValue(newUser);
+      jest
+        .spyOn(repository, 'create')
+        .mockReturnValue({ id: 1, enabled: true, ...newUser });
 
-      jest.spyOn(repository, 'save').mockResolvedValue({ id: 1, ...newUser });
-      jest.spyOn(service, 'findOneById').mockResolvedValueOnce(newUser);
+      jest
+        .spyOn(repository, 'save')
+        .mockResolvedValue({ id: 1, enabled: true, ...newUser });
+      jest
+        .spyOn(service, 'findOneById')
+        .mockResolvedValueOnce({ id: 1, enabled: true, ...newUser });
 
       const user = await service.create(newUser);
       jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(user);
