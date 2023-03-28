@@ -1,13 +1,13 @@
 import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
-import { JwtService } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { User } from '../user/entities/user.entity';
 import { JwtPayload } from './jwt-payload.interface';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 const mockRepository = () => ({
   create: jest.fn(),
@@ -26,6 +26,18 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
+      imports: [
+        JwtModule.registerAsync({
+          imports: [ConfigModule],
+          inject: [ConfigService],
+          useFactory: async (configService: ConfigService) => ({
+            secret: configService.get('JWT_SECRET'),
+            signOptions: {
+              expiresIn: 3600,
+            },
+          }),
+        }),
+      ],
       providers: [
         AuthService,
         UserService,
@@ -53,7 +65,7 @@ describe('AuthService', () => {
   });
 
   describe('signIn', () => {
-    it('should return a token, user and expiresIn if credentials are valid', async () => {
+    it.only('should return a token, user and expiresIn if credentials are valid', async () => {
       // Arrange
       const authCredentialsDto = {
         username: 'johndoe',
@@ -222,7 +234,7 @@ describe('AuthService', () => {
   });
 
   describe('createJwt', () => {
-    it.only('should return a token and data with the correct username and expiration', async () => {
+    it('should return a token and data with the correct username and expiration', async () => {
       // Arrange
       const user: User = {
         id: 1,

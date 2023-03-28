@@ -12,7 +12,6 @@ import { UserService } from '../user/user.service';
 import { UserModule } from '../user/user.module';
 import { User } from 'src/user/entities/user.entity';
 import { LocalStrategy } from './strategies/local.strategy';
-import { JwtConfigService } from '../config/jwt.config.service';
 
 @Module({
   imports: [

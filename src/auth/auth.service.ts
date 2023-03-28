@@ -8,6 +8,7 @@ import { Logger } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { User } from '../user/entities/user.entity';
 import { Repository } from 'typeorm';
+import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
@@ -47,7 +48,6 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findUserSignIn(username);
-    console.log(user?.password, pass);
 
     if (user && (await bcrypt.compare(pass, user.password))) {
       const { password, ...result } = user;
@@ -96,7 +96,11 @@ export class AuthService {
       expiration,
     };
 
-    const jwt = await this.jwtService.signAsync(data, { expiresIn: expiresIn });
+    const jwt = await this.jwtService.sign(data, {
+      expiresIn: expiresIn,
+      secret: jwtConstants.secret,
+    });
+    console.log(jwt);
 
     return {
       data,
