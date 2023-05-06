@@ -26,8 +26,8 @@ type Query {
 type Mutation {
   login(input: AuthCredentialsDto!): AuthPayload!
   createUser(newUserData: NewUserInput!): User!
-  updateUser(id: Float!, updateUserInput: UpdateUserInput!): User!
-  deleteUser(id: Float!): Boolean!
+  updateUser(id: ID!, updateUserInput: UpdateUserInput!): User!
+  deleteUser(id: ID!): Boolean!
 }
 
 input AuthCredentialsDto {
@@ -42,7 +42,8 @@ input NewUserInput {
 }
 
 input UpdateUserInput {
-  id: Float!
-  email: String!
-  password: String!
+  username: String
+  email: String
+  password: String
+  enabled: Boolean
 }

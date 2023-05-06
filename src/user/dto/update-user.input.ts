@@ -3,18 +3,22 @@ import { IsOptional, MaxLength, MinLength } from 'class-validator';
 
 @InputType()
 export class UpdateUserInput {
-  @Field(() => Number)
-  id: number;
-
   @MaxLength(30)
+  @Field({ nullable: true })
   @IsOptional()
-  username: string;
+  username?: string;
 
-  @Field()
-  email: string;
+  @Field({ nullable: true })
+  @IsOptional()
+  email?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @MinLength(6)
   @MaxLength(20)
-  password: string;
+  @IsOptional()
+  password?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  enabled?: boolean;
 }
