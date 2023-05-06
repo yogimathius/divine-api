@@ -1,19 +1,28 @@
-Sure! Here's the README in Markdown format:
-
 # NestJS GraphQL Auth App
 
-This is a basic NestJS GraphQL Auth app that allows users to sign up, log in, and manage their accounts. It is dockerized and can be run on port 3000.
+This is a basic NestJS GraphQL Auth app that allows users to sign up, log in, and manage their accounts.
 
 ## Prerequisites
 
-- Docker
+- Node.js (version 12 or higher)
+- npm or yarn package manager (if you choose to run the app with npm instead of Docker)
 
 ## Getting Started
 
+### Running with Docker
+
 1. Clone this repository.
 2. Navigate to the root directory of the project.
-3. Run `docker build -t network .` to build the Docker image.
-4. Run `docker run -p 3000:3000 network` to start the app in a Docker container.
+3. Build the Docker image by running `docker build -t network .`
+4. Start the Docker container by running `docker run -p 3000:3000 network`
+5. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
+
+### Running with `npm start`
+
+1. Clone this repository.
+2. Navigate to the root directory of the project.
+3. Install the required dependencies by running `npm install` or `yarn install`.
+4. Start the app by running `npm start` or `yarn start`.
 5. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
 
 ## GraphQL Schema
@@ -72,3 +81,5 @@ input UpdateUserInput {
   password: String!
 }
 ```
+
+Note that by default, the app will run on port 3000. If you want to change the port, you can modify the `PORT` environment variable in the `.env` file or set it as an environment variable before running the app.
