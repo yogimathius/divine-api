@@ -22,7 +22,7 @@ export class User {
 
   @Column({ default: false })
   @Field()
-  enabled: boolean;
+  online: boolean;
 }
 
 @ObjectType()

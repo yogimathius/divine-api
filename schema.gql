@@ -8,7 +8,7 @@ type User {
   username: String!
   email: String!
   password: String!
-  enabled: Boolean!
+  online: Boolean!
 }
 
 type AuthPayload {
@@ -45,5 +45,5 @@ input UpdateUserInput {
   username: String
   email: String
   password: String
-  enabled: Boolean
+  online: Boolean
 }

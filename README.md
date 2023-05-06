@@ -38,7 +38,7 @@ type User {
   username: String!
   email: String!
   password: String!
-  enabled: Boolean!
+  online: Boolean!
 }
 
 type AuthPayload {
@@ -90,7 +90,7 @@ mutation {
     id
     username
     email
-    enabled
+    online
   }
 }
 ```
@@ -104,7 +104,7 @@ Response:
       "id": "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52",
       "username": "test",
       "email": "test@tst.ca",
-      "enabled": false
+      "online": false
     }
   }
 }
@@ -114,11 +114,11 @@ Response:
 
 ```
 mutation {
-  updateUser(id: "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52", updateUserInput:{ enabled: true }) {
+  updateUser(id: "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52", updateUserInput:{ online: true }) {
     id
     username
     email
-    enabled
+    online
   }
 }
 ```
@@ -132,7 +132,7 @@ response:
       "id": "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52",
       "username": "test",
       "email": "test@tst.ca",
-      "enabled": true
+      "online": true
     }
   }
 }

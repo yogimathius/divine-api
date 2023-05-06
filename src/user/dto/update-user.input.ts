@@ -20,5 +20,5 @@ export class UpdateUserInput {
 
   @Field({ nullable: true })
   @IsOptional()
-  enabled?: boolean;
+  online?: boolean;
 }

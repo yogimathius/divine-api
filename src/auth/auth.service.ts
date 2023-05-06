@@ -61,7 +61,7 @@ export class AuthService {
     const user = await this.userService.findUserSignIn(payload.username);
 
     // Ensure the user exists and their account isn't disabled
-    if (user && user.enabled) {
+    if (user && user.online) {
       // user.lastSeenAt = new Date();
       // user.save();
       return user;
