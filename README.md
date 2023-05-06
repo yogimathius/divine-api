@@ -30,10 +30,6 @@ This is a basic NestJS GraphQL Auth app that allows users to sign up, log in, an
 The GraphQL schema for this app is as follows:
 
 ```graphql
-# ------------------------------------------------------
-# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
-# ------------------------------------------------------
-
 """
 user
 """
@@ -79,6 +75,66 @@ input UpdateUserInput {
   id: Float!
   email: String!
   password: String!
+}
+```
+
+## Playground Queries
+
+### Mutations
+
+#### createUser
+
+```
+mutation {
+  createUser(newUserData:{ username: "test", email: "test@tst.ca", password: "password" }) {
+    id
+    username
+    email
+    enabled
+  }
+}
+```
+
+Response:
+
+```
+{
+  "data": {
+    "createUser": {
+      "id": "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52",
+      "username": "test",
+      "email": "test@tst.ca",
+      "enabled": false
+    }
+  }
+}
+```
+
+#### updateUser
+
+```
+mutation {
+  updateUser(id: "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52", updateUserInput:{ enabled: true }) {
+    id
+    username
+    email
+    enabled
+  }
+}
+```
+
+response:
+
+```
+{
+  "data": {
+    "updateUser": {
+      "id": "e8afbb6c-2c56-4f9e-8faf-0fa29c9b9a52",
+      "username": "test",
+      "email": "test@tst.ca",
+      "enabled": true
+    }
+  }
 }
 ```
 
