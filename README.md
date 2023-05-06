@@ -12,18 +12,16 @@ This is a basic NestJS GraphQL Auth app that allows users to sign up, log in, an
 ### Running with Docker
 
 1. Clone this repository.
-2. Navigate to the root directory of the project.
-3. Build the Docker image by running `docker build -t network .`
-4. Start the Docker container by running `docker run -p 3000:3000 network`
-5. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
+2. Build the Docker image by running `docker build -t network .`
+3. Start the Docker container by running `docker run -p 3000:3000 network`
+4. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
 
 ### Running with `npm start`
 
 1. Clone this repository.
-2. Navigate to the root directory of the project.
-3. Install the required dependencies by running `npm install` or `yarn install`.
-4. Start the app by running `npm start` or `yarn start`.
-5. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
+2. Install the required dependencies by running `npm install` or `yarn install`.
+3. Start the app by running `npm start` or `yarn start`.
+4. Open your web browser and go to `http://localhost:3000/graphql` to access the GraphQL Playground.
 
 ## GraphQL Schema
 
