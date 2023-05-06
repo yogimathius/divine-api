@@ -4,7 +4,7 @@ import { UpdateUserInput } from './update-user.input';
 describe('UpdateUserInput', () => {
   it('should be valid with all fields', async () => {
     const input = new UpdateUserInput();
-    input.username = 'Test Recipe';
+    input.username = 'Test User';
     input.email = 'test@test.ca';
     input.password = 'test12';
     const errors = await validate(input);

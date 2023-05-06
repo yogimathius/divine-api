@@ -65,7 +65,7 @@ describe('AuthService', () => {
   });
 
   describe('signIn', () => {
-    it.only('should return a token, user and expiresIn if credentials are valid', async () => {
+    it('should return a token, user and expiresIn if credentials are valid', async () => {
       // Arrange
       const authCredentialsDto = {
         username: 'johndoe',
@@ -140,7 +140,7 @@ describe('AuthService', () => {
   });
 
   describe('validateUser', () => {
-    it.only('should return the user if the password is valid', async () => {
+    it('should return the user if the password is valid', async () => {
       // Arrange
       const mockUser = new User();
       mockUser.username = 'testuser';

@@ -134,7 +134,7 @@ describe('UserService', () => {
   });
 
   describe('remove', () => {
-    it('should delete a recipe', async () => {
+    it('should delete a user', async () => {
       const mockUser = {
         id: 1,
         username: 'User 1',
@@ -152,7 +152,7 @@ describe('UserService', () => {
       expect(repository.delete).toHaveBeenCalledWith(1);
     });
 
-    it('should return false if recipe is not found', async () => {
+    it('should return false if user is not found', async () => {
       jest.spyOn(repository, 'findOneBy').mockResolvedValue(null);
 
       const result = await service.remove(1);

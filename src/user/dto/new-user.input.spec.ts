@@ -4,7 +4,7 @@ import { NewUserInput } from './new-user.input';
 describe('NewUserInput', () => {
   it('should be valid with all fields', async () => {
     const input = new NewUserInput();
-    input.username = 'Test Recipe';
+    input.username = 'Test User';
     input.email = 'test@test.ca';
     input.password = 'test12';
     const errors = await validate(input);
