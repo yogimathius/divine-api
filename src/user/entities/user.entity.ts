@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { IsOptional } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType({ description: 'user ' })
@@ -23,6 +24,11 @@ export class User {
   @Column({ default: false })
   @Field()
   online: boolean;
+
+  @Column()
+  @Field({ nullable: true })
+  @IsOptional()
+  bio: string;
 }
 
 @ObjectType()

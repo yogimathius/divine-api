@@ -80,7 +80,8 @@ describe('AuthService', () => {
           '$2b$10$gT7KjZb2QV1q3J28MTfV7uAsj1HceR7.3pOeU6j8U6Pf/Fc.N0cl6', // hashed password for 'password'
         createdAt: new Date(),
         updatedAt: new Date(),
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
 
       jest.spyOn(userService, 'findUserSignIn').mockResolvedValue(user);
@@ -122,7 +123,8 @@ describe('AuthService', () => {
           '$2b$10$gT7KjZb2QV1q3J28MTfV7uAsj1HceR7.3pOeU6j8U6Pf/Fc.N0cl6', // hashed password for 'password'
         createdAt: new Date(),
         updatedAt: new Date(),
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       const token = 'jwt-token';
 
@@ -206,7 +208,7 @@ describe('AuthService', () => {
       const disabledUser = {
         username: 'disabled-user',
         password: 'password',
-        enabled: false,
+        online: false,
       };
       jest
         .spyOn(userService, 'findUserSignIn')
@@ -215,7 +217,7 @@ describe('AuthService', () => {
       expect(result).toBeUndefined();
     });
 
-    it('should return the user if user is found and enabled', async () => {
+    it('should return the user if user is found and online', async () => {
       const payload: JwtPayload = {
         username: 'valid-user',
         expiration: new Date(),
@@ -223,7 +225,7 @@ describe('AuthService', () => {
       const validUser = {
         username: 'valid-user',
         password: 'password',
-        enabled: true,
+        online: true,
       };
       jest
         .spyOn(userService, 'findUserSignIn')
@@ -241,7 +243,8 @@ describe('AuthService', () => {
         username: 'testuser',
         password: 'testpassword',
         email: 'testuser@example.com',
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       const expectedExpiration = new Date();
       expectedExpiration.setTime(expectedExpiration.getTime() + 3600 * 1000);

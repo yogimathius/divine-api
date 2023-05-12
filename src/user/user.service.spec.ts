@@ -40,7 +40,8 @@ describe('UserService', () => {
         username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       jest.spyOn(repository, 'create').mockReturnValue(newUser);
 
@@ -60,7 +61,8 @@ describe('UserService', () => {
         username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       jest.spyOn(repository, 'findOneBy').mockResolvedValue(expectedUser);
 
@@ -79,21 +81,24 @@ describe('UserService', () => {
           username: 'User 1',
           email: 'test@test.cq',
           password: '123456',
-          enabled: true,
+          online: true,
+          bio: 'bio',
         },
         {
           id: 2,
           username: 'User 2',
           email: 'test@test.cq',
           password: '123456',
-          enabled: true,
+          online: true,
+          bio: 'bio',
         },
         {
           id: 3,
           username: 'User 3',
           email: 'test@test.cq',
           password: '123456',
-          enabled: true,
+          online: true,
+          bio: 'bio',
         },
       ];
       jest.spyOn(repository, 'find').mockResolvedValue(users);
@@ -115,7 +120,8 @@ describe('UserService', () => {
         username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       const expectedUser = { id: 1, ...updatedUser };
       jest.spyOn(repository, 'findOneBy').mockResolvedValue(expectedUser);
@@ -140,7 +146,8 @@ describe('UserService', () => {
         username: 'User 1',
         email: 'test@test.cq',
         password: '123456',
-        enabled: true,
+        online: true,
+        bio: 'bio',
       };
       jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockUser);
 

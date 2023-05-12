@@ -30,7 +30,7 @@ export class UserResolver {
   async updateUser(
     @Args({ name: 'id', type: () => ID }) id: number,
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
-  ): Promise<User> {
+  ): Promise<Partial<User>> {
     return this.usersService.update(id, updateUserInput);
   }
 
