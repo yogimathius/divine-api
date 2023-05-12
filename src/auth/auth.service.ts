@@ -12,25 +12,28 @@ import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
+  private readonly logger: Logger;
+
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private userService: UserService,
     private jwtService: JwtService,
-  ) {}
+  ) {
+    this.logger = new Logger();
+  }
 
   async signUp(
     username: string,
     email: string,
     password: string,
   ): Promise<User> {
-    const logger = new Logger();
-    console.log('in service: ', username, password);
+    this.logger.log('in service: ', username, password);
     return this.userService.create({ username, email, password });
   }
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ token: string; user: User; expiresIn: number }> {
+  ): Promise<{ token: string; user: User; expiration: number }> {
     const { username, password } = authCredentialsDto;
     const user = await this.userService.findUserSignIn(username);
     const logger = new Logger();
@@ -40,7 +43,7 @@ export class AuthService {
       const { token } = await this.createJwt(user);
       logger.log(`user access token: ${token}`);
 
-      return { token, user, expiresIn };
+      return { token, user, expiration: expiresIn };
     } else {
       throw new UnauthorizedException('Please check your login credentials');
     }
@@ -70,7 +73,9 @@ export class AuthService {
     return undefined;
   }
 
-  async createJwt(user: User): Promise<{ token: string; data: JwtPayload }> {
+  async createJwt(
+    user: User,
+  ): Promise<{ token: string; data: JwtPayload; expiration: Date }> {
     const expiresIn = 3600; // set expiration time to 1 hour (3600 seconds)
     const expiration = new Date();
     expiration.setTime(expiration.getTime() + expiresIn * 1000);
@@ -79,17 +84,17 @@ export class AuthService {
       username: user.username,
       expiration,
     };
-    console.log(this.jwtService);
 
     const jwt = await this.jwtService.sign(data, {
       expiresIn: expiresIn,
       secret: jwtConstants.secret,
     });
-    console.log(jwt);
+    this.logger.log('jwt created: ' + jwt);
 
     return {
       data,
       token: jwt,
+      expiration,
     };
   }
 }
