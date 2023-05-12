@@ -18,9 +18,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: UserRepository,
-    logger: Logger,
   ) {
-    this.logger = logger;
+    this.logger = new Logger('sign in controller');
   }
 
   async create(createUserInput: NewUserInput): Promise<User> {
@@ -64,6 +63,7 @@ export class UserService {
 
   async findAll(usersArgs: UsersArgs): Promise<User[]> {
     const { page, limit } = usersArgs;
+    this.logger.log('findAll query hit with: ', page, limit);
     return this.userRepository.find({
       take: limit,
       skip: (page - 1) * limit,

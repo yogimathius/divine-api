@@ -25,6 +25,6 @@ import { UserService } from '../user/user.service';
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [UserRepository, UserService, Logger],
+  providers: [UserRepository, UserService],
 })
 export class DatabaseModule {}

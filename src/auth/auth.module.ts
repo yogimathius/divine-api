@@ -41,7 +41,6 @@ import { LocalStrategy } from './strategies/local.strategy';
     AuthResolver,
     UserResolver,
     ConfigService,
-    Logger,
   ],
   exports: [JwtStrategy, JwtModule, PassportModule, AuthService],
 })

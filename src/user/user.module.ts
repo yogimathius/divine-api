@@ -7,6 +7,6 @@ import { Logger } from '@nestjs/common';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  providers: [UserService, UserResolver, Logger],
+  providers: [UserService, UserResolver],
 })
 export class UserModule {}
