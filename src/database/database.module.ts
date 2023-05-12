@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from '../user/entities/user.entity';
@@ -16,16 +16,15 @@ import { UserService } from '../user/user.service';
         port: 5432,
         username: 'yogimathius', // set the username here
         password: 'password',
-        database: 'graphql_freeflow',
+        database: 'divine_api',
         autoLoadEntities: true,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        migrations: [],
-        migrationsTableName: 'custom_migration_table',
+        synchronize: true,
       }),
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [UserRepository, UserService],
+  providers: [UserRepository, UserService, Logger],
 })
 export class DatabaseModule {}

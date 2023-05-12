@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from '../user/entities/user.entity';
@@ -26,7 +26,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
         port: 5432,
         username: 'yogimathius',
         password: 'password',
-        database: 'graphql_freeflow',
+        database: 'divine_api',
         autoLoadEntities: true,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       }),
@@ -36,6 +36,6 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     UserModule,
     DatabaseModule,
   ],
-  providers: [UserRepository, UserService],
+  providers: [UserRepository, UserService, Logger],
 })
 export class RootTestModule {}
