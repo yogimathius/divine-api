@@ -2,6 +2,7 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { NewUserInput } from './dto/new-user.input';
@@ -12,13 +13,18 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
+  private readonly logger: Logger;
+
   constructor(
     @InjectRepository(User)
     private userRepository: UserRepository,
-  ) {}
+    logger: Logger,
+  ) {
+    this.logger = logger;
+  }
 
   async create(createUserInput: NewUserInput): Promise<User> {
-    const { username, password, email } = createUserInput;
+    const { username, password, email, bio } = createUserInput;
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -27,6 +33,7 @@ export class UserService {
       username,
       password: hashedPassword,
       email,
+      bio,
     });
 
     try {
@@ -38,6 +45,7 @@ export class UserService {
       if (error.code === '23505') {
         throw new ConflictException('Username already exists');
       } else {
+        this.logger.error('bad juju in createUser method: ', error);
         throw new InternalServerErrorException();
       }
     }

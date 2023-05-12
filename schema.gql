@@ -40,6 +40,7 @@ input NewUserInput {
   username: String!
   email: String!
   password: String!
+  bio: String!
 }
 
 input UpdateUserInput {
@@ -47,4 +48,5 @@ input UpdateUserInput {
   email: String
   password: String
   online: Boolean
+  bio: String!
 }

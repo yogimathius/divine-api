@@ -21,4 +21,10 @@ export class UpdateUserInput {
   @Field({ nullable: true })
   @IsOptional()
   online?: boolean;
+
+  @Field()
+  @MinLength(6)
+  @MaxLength(20)
+  @IsOptional()
+  bio?: string;
 }

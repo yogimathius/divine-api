@@ -1,6 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsOptional, MaxLength, MinLength } from 'class-validator';
-import { Exclude } from 'class-transformer';
 
 @InputType()
 export class NewUserInput {
@@ -15,4 +14,10 @@ export class NewUserInput {
   @MinLength(6)
   @MaxLength(20)
   password: string;
+
+  @Field()
+  @MinLength(6)
+  @MaxLength(20)
+  @IsOptional()
+  bio?: string;
 }
