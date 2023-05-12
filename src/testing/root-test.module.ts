@@ -28,7 +28,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
         password: 'password',
         database: 'graphql_freeflow',
         autoLoadEntities: true,
-        synchronize: true,
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       }),
       inject: [ConfigService],
     }),
