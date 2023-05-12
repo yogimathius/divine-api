@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
@@ -41,6 +41,7 @@ import { LocalStrategy } from './strategies/local.strategy';
     AuthResolver,
     UserResolver,
     ConfigService,
+    Logger,
   ],
   exports: [JwtStrategy, JwtModule, PassportModule, AuthService],
 })
