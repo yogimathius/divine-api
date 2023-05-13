@@ -20,26 +20,33 @@ type AuthPayload {
 }
 
 type Query {
-  user(id: Float!): User!
+  user(id: ID!): User!
   users(page: Int! = 1, limit: Int! = 10): [User!]!
 }
 
 type Mutation {
+  register(input: SignupCredentialsDto!): AuthPayload!
   login(input: AuthCredentialsDto!): AuthPayload!
   createUser(newUserData: NewUserInput!): User!
   updateUser(id: ID!, updateUserInput: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
 }
 
-input AuthCredentialsDto {
+input SignupCredentialsDto {
   username: String!
   password: String!
 }
 
+input AuthCredentialsDto {
+  username: String!
+  password: String!
+  token: String!
+}
+
 input NewUserInput {
   username: String!
-  email: String!
   password: String!
+  email: String!
   bio: String!
 }
 

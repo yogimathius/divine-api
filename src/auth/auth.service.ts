@@ -22,13 +22,9 @@ export class AuthService {
     this.logger = new Logger();
   }
 
-  async signUp(
-    username: string,
-    email: string,
-    password: string,
-  ): Promise<User> {
+  async signUp(username: string, password: string): Promise<User> {
     this.logger.log('in service: ', username, password);
-    return this.userService.create({ username, email, password });
+    return this.userService.create({ username, password });
   }
 
   async signIn(

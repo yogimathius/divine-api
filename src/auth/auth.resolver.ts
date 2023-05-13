@@ -8,8 +8,9 @@ import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth-guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthPayload, User } from '../user/entities/user.entity';
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { SignupCredentialsDto } from './dto/signup-credentials.dto';
 import { Request } from 'express';
+import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 
 export const CurrentUser = createParamDecorator(
   (data: unknown, context: ExecutionContext) => {
@@ -20,6 +21,17 @@ export const CurrentUser = createParamDecorator(
 @Resolver('Auth')
 export class AuthResolver {
   constructor(private authService: AuthService) {}
+
+  @Mutation(() => AuthPayload, { name: 'register' })
+  register(@Args('input') signupCredentialsDto: SignupCredentialsDto) {
+    const { username, password } = signupCredentialsDto;
+    const logger = new Logger('sign in controller');
+
+    logger.verbose(
+      `user sign in hit with ${JSON.stringify({ username, password })}`,
+    );
+    return this.authService.signUp(username, password);
+  }
 
   @Mutation((returns) => AuthPayload, { name: 'login' })
   login(@Args('input') authCredentialsDto: AuthCredentialsDto) {

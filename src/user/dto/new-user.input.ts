@@ -8,12 +8,13 @@ export class NewUserInput {
   username: string;
 
   @Field()
-  email: string;
-
-  @Field()
   @MinLength(6)
   @MaxLength(20)
   password: string;
+
+  @Field()
+  @IsOptional()
+  email?: string;
 
   @Field()
   @MinLength(6)
