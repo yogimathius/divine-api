@@ -13,10 +13,6 @@ export class User {
   @Field()
   username: string;
 
-  @Column({ unique: true })
-  @Field()
-  email: string;
-
   @Column()
   @Field()
   password: string;
@@ -28,7 +24,12 @@ export class User {
   @Column()
   @Field({ nullable: true })
   @IsOptional()
-  bio: string;
+  bio?: string;
+
+  @Column({ unique: true })
+  @Field({ nullable: true })
+  @IsOptional()
+  email?: string;
 }
 
 @ObjectType()

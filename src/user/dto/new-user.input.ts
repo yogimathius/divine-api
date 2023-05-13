@@ -12,13 +12,13 @@ export class NewUserInput {
   @MaxLength(20)
   password: string;
 
-  @Field()
-  @IsOptional()
-  email?: string;
-
-  @Field()
+  @Field({ nullable: true })
   @MinLength(6)
   @MaxLength(20)
   @IsOptional()
   bio?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  email?: string;
 }

@@ -23,7 +23,9 @@ export class AuthService {
   }
 
   async signUp(username: string, password: string): Promise<User> {
-    this.logger.log('in service: ', username, password);
+    this.logger.verbose(
+      `auth sign up hit with ${JSON.stringify({ username, password })}`,
+    );
     return this.userService.create({ username, password });
   }
 

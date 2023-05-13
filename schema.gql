@@ -6,10 +6,10 @@
 type User {
   id: ID!
   username: String!
-  email: String!
   password: String!
   online: Boolean!
   bio: String
+  email: String
 }
 
 type AuthPayload {
@@ -27,7 +27,7 @@ type Query {
 type Mutation {
   register(input: SignupCredentialsDto!): AuthPayload!
   login(input: AuthCredentialsDto!): AuthPayload!
-  createUser(newUserData: NewUserInput!): User!
+  createUser(input: NewUserInput!): User!
   updateUser(id: ID!, updateUserInput: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
 }
@@ -46,8 +46,8 @@ input AuthCredentialsDto {
 input NewUserInput {
   username: String!
   password: String!
-  email: String!
-  bio: String!
+  bio: String
+  email: String
 }
 
 input UpdateUserInput {
@@ -55,5 +55,5 @@ input UpdateUserInput {
   email: String
   password: String
   online: Boolean
-  bio: String!
+  bio: String
 }

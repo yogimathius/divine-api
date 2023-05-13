@@ -23,22 +23,23 @@ export class UserService {
   }
 
   async create(createUserInput: NewUserInput): Promise<User> {
-    const { username, password, email, bio } = createUserInput;
-
+    const { username, password } = createUserInput;
+    this.logger.verbose(
+      `user create hit with ${JSON.stringify({ username, password })}`,
+    );
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = this.userRepository.create({
       username,
       password: hashedPassword,
-      email,
-      bio,
     });
+    this.logger.verbose(`after create user ${JSON.stringify(user)}`);
 
     try {
       await this.userRepository.save(user);
       const savedUser = await this.findOneById(user.id);
-
+      this.logger.verbose(`saving user ${JSON.stringify(savedUser)}`);
       return savedUser;
     } catch (error) {
       if (error.code === '23505') {

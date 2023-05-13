@@ -28,7 +28,7 @@ export class AuthResolver {
     const logger = new Logger('sign in controller');
 
     logger.verbose(
-      `user sign in hit with ${JSON.stringify({ username, password })}`,
+      `auth register hit with ${JSON.stringify({ username, password })}`,
     );
     return this.authService.signUp(username, password);
   }

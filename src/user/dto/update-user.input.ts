@@ -22,7 +22,7 @@ export class UpdateUserInput {
   @IsOptional()
   online?: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   @MinLength(6)
   @MaxLength(20)
   @IsOptional()
