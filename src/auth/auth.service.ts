@@ -6,7 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt-payload.interface';
 import { Logger } from '@nestjs/common';
 import { UserService } from '../user/user.service';
-import { User } from '../user/entities/user.entity';
+import { AuthPayload, User } from '../user/entities/user.entity';
 import { Repository } from 'typeorm';
 import { jwtConstants } from './constants';
 
@@ -22,11 +22,21 @@ export class AuthService {
     this.logger = new Logger();
   }
 
-  async signUp(username: string, password: string): Promise<User> {
+  async signUp(username: string, password: string): Promise<AuthPayload> {
     this.logger.verbose(
       `auth sign up hit with ${JSON.stringify({ username, password })}`,
     );
-    return this.userService.create({ username, password });
+    const user = await this.userService.create({ username, password });
+
+    if (user) {
+      const expiresIn = 3600;
+      const { token } = await this.createJwt(user);
+      this.logger.log(`user access token: ${token}`);
+
+      return { token, user, expiration: expiresIn };
+    } else {
+      throw new UnauthorizedException('Please check your login credentials');
+    }
   }
 
   async signIn(
