@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from '../user/entities/user.entity';
 import { UserRepository } from '../user/repositories/user.repository';
 import { UserService } from '../user/user.service';
+import { YogaPose } from '../yoga-pose/entities/yoga-pose.entity';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { UserService } from '../user/user.service';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, YogaPose]),
   ],
   providers: [UserRepository, UserService],
 })

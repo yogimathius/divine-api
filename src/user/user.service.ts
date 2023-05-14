@@ -19,7 +19,7 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: UserRepository,
   ) {
-    this.logger = new Logger('sign in controller');
+    this.logger = new Logger('user service');
   }
 
   async create(createUserInput: NewUserInput): Promise<User> {

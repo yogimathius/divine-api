@@ -8,6 +8,8 @@ import { UserModule } from '../user/user.module';
 import { DatabaseModule } from '../database/database.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { YogaPoseModule } from '../yoga-pose/yoga-pose.module';
+import { YogaPose } from '../yoga-pose/entities/yoga-pose.entity';
 
 @Module({
   imports: [
@@ -32,9 +34,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, YogaPose]),
     UserModule,
     DatabaseModule,
+    YogaPoseModule,
   ],
   providers: [UserRepository, UserService, Logger],
 })
