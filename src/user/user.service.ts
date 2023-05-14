@@ -71,10 +71,14 @@ export class UserService {
     });
   }
 
-  async update(id: number, data: Partial<User>): Promise<Partial<User>> {
-    await this.userRepository.update(id, data);
+  async update(id: number, data: Partial<User>): Promise<User> {
+    this.logger.verbose('updating user with: ', data);
 
-    return this.userRepository.findOneBy({ id });
+    const response = await this.userRepository.update(id, data);
+    this.logger.verbose('updating user: ', response);
+    const updatedUser = await this.findOneById(id);
+    this.logger.verbose('user updated: ', updatedUser);
+    return updatedUser;
   }
 
   async remove(id: number): Promise<boolean> {
