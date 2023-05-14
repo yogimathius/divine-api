@@ -21,12 +21,12 @@ export class User {
   @Field()
   online: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   @Field({ nullable: true })
   @IsOptional()
   bio?: string;
 
-  @Column({ unique: true })
+  @Column({ nullable: true, unique: true })
   @Field({ nullable: true })
   @IsOptional()
   email?: string;
@@ -34,10 +34,6 @@ export class User {
 
 @ObjectType()
 export class AuthPayload {
-  @Field()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
   @Field()
   token: string;
 
