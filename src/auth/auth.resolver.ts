@@ -33,7 +33,7 @@ export class AuthResolver {
     return this.authService.signUp(username, password);
   }
 
-  @Mutation((returns) => AuthPayload, { name: 'login' })
+  @Mutation(() => AuthPayload, { name: 'login' })
   login(@Args('input') authCredentialsDto: AuthCredentialsDto) {
     const logger = new Logger('sign in controller');
 
