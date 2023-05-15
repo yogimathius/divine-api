@@ -1,19 +1,25 @@
+import { Field, ID } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class YogaPose {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
+  @Field(() => ID)
   pose_id: number;
 
-  @Column()
+  @Column({ unique: true })
+  @Field()
   pose_name: string;
 
   @Column('text')
+  @Field()
   pose_description: string;
 
   @Column()
+  @Field()
   pose_image_path: string;
 
   @Column()
+  @Field()
   pose_points: number;
 }
