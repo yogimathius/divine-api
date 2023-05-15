@@ -9,11 +9,11 @@ async function bootstrap() {
   });
 
   // Clear the database
-  // const clearDbService = app.get(ClearDbService);
-  // await clearDbService.clearAllData();
+  const clearDbService = app.get(ClearDbService);
+  await clearDbService.clearAllData();
 
   const yogaPoseSeedService = app.get(YogaPoseSeedService);
-  // await yogaPoseSeedService.seed();
+  await yogaPoseSeedService.seed();
 
   await app.listen(3000);
 }
