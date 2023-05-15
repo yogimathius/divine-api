@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { YogaPose } from './entities/yoga-pose.entity';
+import { CreateYogaPoseInput } from './dtos/create-yoga-pose.input';
+import { UpdateYogaPoseInput } from './dtos/update-yoga-pose.input';
 
 @Injectable()
 export class YogaPoseService {
@@ -19,17 +21,20 @@ export class YogaPoseService {
   }
 
   async findById(id: number): Promise<YogaPose> {
-    return this.yogaPoseRepository.findOneBy({ pose_id: id });
+    return this.yogaPoseRepository.findOneBy({ poseId: id });
   }
 
-  async create(yogaPoseData: Partial<YogaPose>): Promise<YogaPose> {
-    const yogaPose = this.yogaPoseRepository.create(yogaPoseData);
+  async create(yogaPoseInput: CreateYogaPoseInput): Promise<YogaPose> {
+    const yogaPose = this.yogaPoseRepository.create(yogaPoseInput);
     return this.yogaPoseRepository.save(yogaPose);
   }
 
-  async update(id: number, yogaPoseData: Partial<YogaPose>): Promise<YogaPose> {
+  async update(
+    id: number,
+    yogaPoseData: UpdateYogaPoseInput,
+  ): Promise<YogaPose> {
     await this.yogaPoseRepository.update(id, yogaPoseData);
-    return this.yogaPoseRepository.findOneBy({ pose_id: id });
+    return this.yogaPoseRepository.findOneBy({ poseId: id });
   }
 
   async delete(id: number): Promise<void> {

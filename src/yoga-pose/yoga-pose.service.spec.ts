@@ -2,6 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { YogaPose } from './entities/yoga-pose.entity';
 import { YogaPoseService } from './yoga-pose.service';
+import { UpdateYogaPoseInput } from './dtos/update-yoga-pose.input';
+import { CreateYogaPoseInput } from './dtos/create-yoga-pose.input';
 
 describe('YogaPoseService', () => {
   let yogaPoseService: YogaPoseService;
@@ -33,18 +35,18 @@ describe('YogaPoseService', () => {
     it('should return an array of yoga poses', async () => {
       const yogaPoses: YogaPose[] = [
         {
-          pose_id: 1,
-          pose_name: 'Pose 1',
-          pose_description: 'Description 1',
-          pose_points: 10,
-          pose_image_path: '',
+          poseId: 1,
+          poseName: 'Pose 1',
+          poseDescription: 'Description 1',
+          posePoints: 10,
+          poseImagePath: '',
         },
         {
-          pose_id: 2,
-          pose_name: 'Pose 2',
-          pose_description: 'Description 2',
-          pose_points: 15,
-          pose_image_path: '',
+          poseId: 2,
+          poseName: 'Pose 2',
+          poseDescription: 'Description 2',
+          posePoints: 15,
+          poseImagePath: '',
         },
       ];
       yogaPoseRepositoryMock.find.mockResolvedValue(yogaPoses);
@@ -59,11 +61,11 @@ describe('YogaPoseService', () => {
   describe('findById', () => {
     it('should return a yoga pose by ID', async () => {
       const yogaPose: YogaPose = {
-        pose_id: 1,
-        pose_name: 'Pose 1',
-        pose_description: 'Description 1',
-        pose_points: 10,
-        pose_image_path: '',
+        poseId: 1,
+        poseName: 'Pose 1',
+        poseDescription: 'Description 1',
+        posePoints: 10,
+        poseImagePath: '',
       };
       const id = 1;
       yogaPoseRepositoryMock.findOne.mockResolvedValue(yogaPose);
@@ -77,17 +79,18 @@ describe('YogaPoseService', () => {
 
   describe('create', () => {
     it('should create a new yoga pose', async () => {
-      const newPoseData: Partial<YogaPose> = {
-        pose_name: 'New Pose',
-        pose_description: 'New Description',
-        pose_points: 20,
+      const newPoseData: CreateYogaPoseInput = {
+        poseName: 'New Pose',
+        poseDescription: 'New Description',
+        posePoints: 20,
+        poseImagePath: '',
       };
       const createdPose: YogaPose = {
-        pose_id: 3,
-        pose_name: 'New Pose',
-        pose_description: 'New Description',
-        pose_points: 20,
-        pose_image_path: '',
+        poseId: 3,
+        poseName: 'New Pose',
+        poseDescription: 'New Description',
+        posePoints: 20,
+        poseImagePath: '',
       };
       yogaPoseRepositoryMock.create.mockReturnValue(newPoseData);
       yogaPoseRepositoryMock.save.mockResolvedValue(createdPose);
@@ -103,16 +106,17 @@ describe('YogaPoseService', () => {
   describe('update', () => {
     it('should update an existing yoga pose', async () => {
       const id = 1;
-      const updatedPoseData: Partial<YogaPose> = {
-        pose_name: 'Updated Pose',
-        pose_description: 'Updated Description',
+      const updatedPoseData: UpdateYogaPoseInput = {
+        poseId: id,
+        poseName: 'Updated Pose',
+        poseDescription: 'Updated Description',
       };
       const updatedPose: YogaPose = {
-        pose_id: 1,
-        pose_name: 'Updated Pose',
-        pose_description: 'Updated Description',
-        pose_points: 10,
-        pose_image_path: '',
+        poseId: 1,
+        poseName: 'Updated Pose',
+        poseDescription: 'Updated Description',
+        posePoints: 10,
+        poseImagePath: '',
       };
       yogaPoseRepositoryMock.findOne.mockResolvedValue(updatedPose);
       yogaPoseRepositoryMock.update.mockResolvedValue({ affected: 1 });
@@ -132,11 +136,11 @@ describe('YogaPoseService', () => {
     it('should remove an existing yoga pose', async () => {
       const id = 1;
       const deletedPose: YogaPose = {
-        pose_id: 1,
-        pose_name: 'Deleted Pose',
-        pose_description: 'Deleted Description',
-        pose_points: 10,
-        pose_image_path: '',
+        poseId: 1,
+        poseName: 'Deleted Pose',
+        poseDescription: 'Deleted Description',
+        posePoints: 10,
+        poseImagePath: '',
       };
       yogaPoseRepositoryMock.findOne.mockResolvedValue(deletedPose);
       yogaPoseRepositoryMock.delete.mockResolvedValue({ affected: 1 });

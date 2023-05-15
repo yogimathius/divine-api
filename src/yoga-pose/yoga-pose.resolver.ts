@@ -1,6 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { YogaPose } from './entities/yoga-pose.entity';
 import { YogaPoseService } from './yoga-pose.service';
+import { CreateYogaPoseInput } from './dtos/create-yoga-pose.input';
+import { UpdateYogaPoseInput } from './dtos/update-yoga-pose.input';
 
 @Resolver(() => YogaPose)
 export class YogaPoseResolver {
@@ -20,17 +22,17 @@ export class YogaPoseResolver {
 
   @Mutation(() => YogaPose)
   async createYogaPose(
-    @Args('data') data: Partial<YogaPose>,
+    @Args('createYogaPoseInput') createYogaPoseInput: CreateYogaPoseInput,
   ): Promise<YogaPose> {
-    return this.yogaPoseService.create(data);
+    return this.yogaPoseService.create(createYogaPoseInput);
   }
 
   @Mutation(() => YogaPose)
-  async updateYogaPose(
-    @Args('id', { type: () => Int }) id: number,
-    @Args('data') data: Partial<YogaPose>,
-  ): Promise<YogaPose> {
-    return this.yogaPoseService.update(id, data);
+  updateYogaPose(
+    @Args('id') id: number,
+    @Args('input') input: UpdateYogaPoseInput,
+  ) {
+    return this.yogaPoseService.update(id, input);
   }
 
   @Mutation(() => Boolean)

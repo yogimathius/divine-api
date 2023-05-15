@@ -18,9 +18,19 @@ type AuthPayload {
   user: User!
 }
 
+type YogaPose {
+  poseId: ID!
+  poseName: String!
+  poseDescription: String!
+  poseImagePath: String!
+  posePoints: Float!
+}
+
 type Query {
   user(id: ID!): User!
   users(page: Int! = 1, limit: Int! = 10): [User!]!
+  yogaPoses: [YogaPose!]!
+  yogaPose(id: Int!): YogaPose!
 }
 
 type Mutation {
@@ -29,6 +39,9 @@ type Mutation {
   createUser(input: NewUserInput!): User!
   updateUser(id: ID!, updateUserInput: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
+  createYogaPose(createYogaPoseInput: CreateYogaPoseInput!): YogaPose!
+  updateYogaPose(id: Float!, input: UpdateYogaPoseInput!): YogaPose!
+  deleteYogaPose(id: Int!): Boolean!
 }
 
 input SignupCredentialsDto {
@@ -55,4 +68,19 @@ input UpdateUserInput {
   password: String
   online: Boolean
   bio: String
+}
+
+input CreateYogaPoseInput {
+  poseName: String!
+  poseDescription: String!
+  poseImagePath: String!
+  posePoints: Int!
+}
+
+input UpdateYogaPoseInput {
+  poseName: String
+  poseDescription: String
+  poseImagePath: String
+  posePoints: Int
+  poseId: Int!
 }
