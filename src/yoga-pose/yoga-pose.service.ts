@@ -13,4 +13,26 @@ export class YogaPoseService {
   ) {
     this.logger = new Logger('yoga pose service');
   }
+
+  async findAll(): Promise<YogaPose[]> {
+    return this.yogaPoseRepository.find();
+  }
+
+  async findById(id: number): Promise<YogaPose> {
+    return this.yogaPoseRepository.findOneBy({ pose_id: id });
+  }
+
+  async create(yogaPoseData: Partial<YogaPose>): Promise<YogaPose> {
+    const yogaPose = this.yogaPoseRepository.create(yogaPoseData);
+    return this.yogaPoseRepository.save(yogaPose);
+  }
+
+  async update(id: number, yogaPoseData: Partial<YogaPose>): Promise<YogaPose> {
+    await this.yogaPoseRepository.update(id, yogaPoseData);
+    return this.yogaPoseRepository.findOneBy({ pose_id: id });
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.yogaPoseRepository.delete(id);
+  }
 }
