@@ -1,6 +1,7 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @ObjectType({ description: 'user ' })
 @Entity()
@@ -30,6 +31,9 @@ export class User {
   @Field({ nullable: true })
   @IsOptional()
   email?: string;
+
+  @OneToMany(() => UserYogaPose, (userYogaPose) => userYogaPose.user)
+  userYogaPoses: UserYogaPose[];
 }
 
 @ObjectType()

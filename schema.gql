@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type YogaPose {
+  poseId: ID!
+  poseName: String!
+  poseDescription: String!
+  poseImagePath: String!
+  posePoints: Float!
+}
+
 """user """
 type User {
   id: ID!
@@ -16,14 +24,6 @@ type AuthPayload {
   token: String!
   expiration: Float!
   user: User!
-}
-
-type YogaPose {
-  poseId: ID!
-  poseName: String!
-  poseDescription: String!
-  poseImagePath: String!
-  posePoints: Float!
 }
 
 type Query {

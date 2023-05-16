@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -23,4 +24,7 @@ export class YogaPose {
   @Column()
   @Field()
   posePoints: number;
+
+  @OneToMany(() => UserYogaPose, (userYogaPose) => userYogaPose.pose)
+  userYogaPoses: UserYogaPose[];
 }
