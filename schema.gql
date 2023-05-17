@@ -10,6 +10,18 @@ type YogaPose {
   posePoints: Float!
 }
 
+type UserYogaPose {
+  user_pose_id: Float!
+  user: User!
+  pose: YogaPose!
+  completion_date: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 """user """
 type User {
   id: ID!
@@ -31,6 +43,7 @@ type Query {
   users(page: Int! = 1, limit: Int! = 10): [User!]!
   yogaPoses: [YogaPose!]!
   yogaPose(id: Int!): YogaPose!
+  userYogaPoses: [UserYogaPose!]!
 }
 
 type Mutation {
@@ -42,6 +55,8 @@ type Mutation {
   createYogaPose(createYogaPoseInput: CreateYogaPoseInput!): YogaPose!
   updateYogaPose(id: Float!, input: UpdateYogaPoseInput!): YogaPose!
   deleteYogaPose(id: Int!): Boolean!
+  createUserYogaPose(createUserYogaPoseInput: CreateUserYogaPoseInput!): UserYogaPose!
+  deleteUserYogaPose(id: Int!): Boolean!
 }
 
 input SignupCredentialsDto {
@@ -83,4 +98,10 @@ input UpdateYogaPoseInput {
   poseImagePath: String
   posePoints: Int
   poseId: Int!
+}
+
+input CreateUserYogaPoseInput {
+  userId: Int!
+  poseId: Int!
+  completionDate: DateTime!
 }

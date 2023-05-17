@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UserYogaPose } from './entities/user-yoga-pose.entity';
 import { UserService } from '../user/user.service';
 import { YogaPoseService } from '../yoga-pose/yoga-pose.service';
+import { CreateUserYogaPoseInput } from './dto/create-user-yoga-pose.input';
 
 @Injectable()
 export class UserYogaPoseService {
@@ -15,12 +16,10 @@ export class UserYogaPoseService {
   ) {}
 
   async createUserYogaPose(
-    userId: number,
-    poseId: number,
-    completionDate: Date,
+    userYogaPoseInput: CreateUserYogaPoseInput,
   ): Promise<UserYogaPose> {
     const userYogaPose = new UserYogaPose();
-
+    const { userId, poseId, completionDate } = userYogaPoseInput;
     const user = await this.userService.findBy('id', userId);
     if (!user) {
       throw new Error(`User with ID ${userId} not found.`);

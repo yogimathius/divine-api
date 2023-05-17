@@ -5,6 +5,9 @@ import { User } from '../user/entities/user.entity';
 import { UserRepository } from '../user/repositories/user.repository';
 import { UserService } from '../user/user.service';
 import { YogaPose } from '../yoga-pose/entities/yoga-pose.entity';
+import { UserYogaPoseService } from 'src/user-yoga-pose/user-yoga-pose.service';
+import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity';
+import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 
 @Module({
   imports: [
@@ -24,8 +27,13 @@ import { YogaPose } from '../yoga-pose/entities/yoga-pose.entity';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User, YogaPose]),
+    TypeOrmModule.forFeature([User, YogaPose, UserYogaPose]),
   ],
-  providers: [UserRepository, UserService],
+  providers: [
+    UserRepository,
+    UserService,
+    UserYogaPoseService,
+    YogaPoseService,
+  ],
 })
 export class DatabaseModule {}

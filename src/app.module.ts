@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { YogaPoseModule } from './yoga-pose/yoga-pose.module';
+import { UserYogaPoseModule } from './user-yoga-pose/user-yoga-pose.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { YogaPoseModule } from './yoga-pose/yoga-pose.module';
     AuthModule,
     UserModule,
     YogaPoseModule,
+    UserYogaPoseModule,
   ],
 })
 export class AppModule {}

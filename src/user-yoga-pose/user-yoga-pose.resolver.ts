@@ -13,11 +13,11 @@ export class UserYogaPoseResolver {
     createUserYogaPoseInput: CreateUserYogaPoseInput,
   ): Promise<UserYogaPose> {
     const { userId, poseId, completionDate } = createUserYogaPoseInput;
-    return this.userYogaPoseService.createUserYogaPose(
+    return this.userYogaPoseService.createUserYogaPose({
       userId,
       poseId,
       completionDate,
-    );
+    });
   }
 
   @Query(() => [UserYogaPose])
