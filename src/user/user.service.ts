@@ -55,7 +55,10 @@ export class UserService {
     return this.userRepository.findOneBy({ id });
   }
 
-  async findBy(field: string, value: string): Promise<User | undefined> {
+  async findBy(
+    field: string,
+    value: string | number,
+  ): Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       where: { [field]: value },
     });
