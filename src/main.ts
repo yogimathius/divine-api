@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { YogaPoseSeedService } from './yoga-pose/seeds/yoga-pose.seed.service';
 import { ClearDbService } from './database/clear-database.service';
+import { ClearUserDbService } from './database/clear-user-database.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -9,11 +10,11 @@ async function bootstrap() {
   });
 
   // Clear the database
-  const clearDbService = app.get(ClearDbService);
-  await clearDbService.clearAllData();
+  // const clearDbService = app.get(ClearUserDbService);
+  // await clearDbService.clearAllData();
 
-  const yogaPoseSeedService = app.get(YogaPoseSeedService);
-  await yogaPoseSeedService.seed();
+  // const yogaPoseSeedService = app.get(YogaPoseSeedService);
+  // await yogaPoseSeedService.seed();
 
   await app.listen(3000);
 }
