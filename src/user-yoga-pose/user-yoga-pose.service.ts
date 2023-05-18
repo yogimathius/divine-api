@@ -56,6 +56,12 @@ export class UserYogaPoseService {
     return this.userYogaPoseRepository.find();
   }
 
+  async findUserYogaPoses(userId: number): Promise<UserYogaPose[]> {
+    return this.userYogaPoseRepository.find({
+      where: { user: { id: userId } },
+      relations: ['user', 'pose'],
+    });
+  }
   // async findUserYogaPoseById(id: number): Promise<UserYogaPose> {
   //   return this.userYogaPoseRepository.findOne(id);
   // }
