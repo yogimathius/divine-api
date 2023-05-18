@@ -101,7 +101,7 @@ input UpdateYogaPoseInput {
 }
 
 input CreateUserYogaPoseInput {
-  userId: Int!
-  poseId: Int!
+  userId: ID!
+  poseId: ID!
   completionDate: DateTime!
 }

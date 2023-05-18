@@ -1,11 +1,11 @@
-import { InputType, Field, Int } from '@nestjs/graphql';
+import { InputType, Field, ID } from '@nestjs/graphql';
 
 @InputType()
 export class CreateUserYogaPoseInput {
-  @Field(() => Int)
+  @Field(() => ID)
   userId: number;
 
-  @Field(() => Int)
+  @Field(() => ID)
   poseId: number;
 
   @Field()
