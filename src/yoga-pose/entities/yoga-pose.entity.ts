@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity';
+import { UserYogaPose } from '../../user-yoga-pose/entities/user-yoga-pose.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()

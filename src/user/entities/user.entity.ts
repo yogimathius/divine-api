@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
-import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity';
+import { UserYogaPose } from '../../user-yoga-pose/entities/user-yoga-pose.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @ObjectType({ description: 'user ' })

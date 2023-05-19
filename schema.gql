@@ -67,7 +67,6 @@ input SignupCredentialsDto {
 input AuthCredentialsDto {
   username: String!
   password: String!
-  token: String!
 }
 
 input NewUserInput {

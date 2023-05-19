@@ -7,6 +7,7 @@ import { UserService } from 'src/user/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
+import { ClearUserYogaDbService } from 'src/database/clear-user-yoga-pose-database.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserYogaPose, User, YogaPose])],
@@ -15,6 +16,7 @@ import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
     UserYogaPoseService,
     YogaPoseService,
     UserYogaPoseResolver,
+    ClearUserYogaDbService,
   ],
 })
 export class UserYogaPoseModule {}

@@ -48,8 +48,10 @@ export class UserYogaPoseService {
     userYogaPose.pose = pose;
 
     userYogaPose.completion_date = completionDate;
-    this.logger.debug(this.userYogaPoseRepository.save(userYogaPose));
-    return this.userYogaPoseRepository.save(userYogaPose);
+
+    if (this.userYogaPoseRepository.save(userYogaPose)) {
+      return userYogaPose;
+    }
   }
 
   async findAllUserYogaPoses(): Promise<UserYogaPose[]> {
