@@ -43,6 +43,14 @@ type Achievement {
   achievementName: String!
   achievementDate: DateTime!
   achievementPoints: Float!
+  poseExecutionCount: PoseExecutionCount!
+}
+
+type PoseExecutionCount {
+  poseExecutionCountId: ID!
+  pose: String!
+  executionCount: Float!
+  achievement: Achievement!
 }
 
 type Query {
@@ -121,7 +129,7 @@ input CreateAchievementInput {
   achievementName: String!
   achievementDate: String!
   achievementPoints: Int!
-  poseExecutionCounts: [PoseExecutionCountInput!]!
+  poseExecutionCount: [PoseExecutionCountInput!]!
 }
 
 input PoseExecutionCountInput {
@@ -134,6 +142,6 @@ input UpdateAchievementInput {
   achievementName: String
   achievementDate: String
   achievementPoints: Int
-  poseExecutionCounts: [PoseExecutionCountInput!]
+  poseExecutionCount: [PoseExecutionCountInput!]
   achievementId: Int!
 }
