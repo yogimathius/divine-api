@@ -38,12 +38,21 @@ type AuthPayload {
   user: User!
 }
 
+type Achievement {
+  achievementId: ID!
+  achievementName: String!
+  achievementDate: DateTime!
+  achievementPoints: Float!
+}
+
 type Query {
   user(id: ID!): User!
   users(page: Int! = 1, limit: Int! = 10): [User!]!
   yogaPoses: [YogaPose!]!
   yogaPose(id: Int!): YogaPose!
   userYogaPoses(userId: ID!): [UserYogaPose!]!
+  achievements: [Achievement!]!
+  achievement(id: Int!): Achievement!
 }
 
 type Mutation {
@@ -57,6 +66,9 @@ type Mutation {
   deleteYogaPose(id: Int!): Boolean!
   createUserYogaPose(createUserYogaPoseInput: CreateUserYogaPoseInput!): UserYogaPose!
   deleteUserYogaPose(id: ID!): Boolean!
+  createAchievement(createAchievementInput: CreateAchievementInput!): Achievement!
+  updateAchievement(id: Float!, input: UpdateAchievementInput!): Achievement!
+  deleteAchievement(id: Int!): Boolean!
 }
 
 input SignupCredentialsDto {
@@ -103,4 +115,25 @@ input CreateUserYogaPoseInput {
   userId: ID!
   poseId: ID!
   completionDate: DateTime!
+}
+
+input CreateAchievementInput {
+  achievementName: String!
+  achievementDate: String!
+  achievementPoints: Int!
+  poseExecutionCounts: [PoseExecutionCountInput!]!
+}
+
+input PoseExecutionCountInput {
+  pose: String!
+  executionCount: Int!
+  achievementId: ID!
+}
+
+input UpdateAchievementInput {
+  achievementName: String
+  achievementDate: String
+  achievementPoints: Int
+  poseExecutionCounts: [PoseExecutionCountInput!]
+  achievementId: Int!
 }
