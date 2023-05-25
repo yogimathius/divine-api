@@ -16,7 +16,7 @@ export class CreateAchievementInput {
   @Field(() => [PoseExecutionCountInput])
   @ValidateNested({ each: true })
   @Type(() => PoseExecutionCountInput)
-  poseExecutionCounts: PoseExecutionCountInput[];
+  poseExecutionCount: PoseExecutionCountInput[];
 }
 
 @InputType()

@@ -31,7 +31,8 @@ export class Achievement {
     () => PoseExecutionCount,
     (poseExecutionCount) => poseExecutionCount.achievement,
   )
-  poseExecutionCounts: PoseExecutionCount[];
+  @Field(() => PoseExecutionCount)
+  poseExecutionCount: PoseExecutionCount[];
 }
 
 // PoseExecutionCount entity
@@ -50,10 +51,7 @@ export class PoseExecutionCount {
   @Field()
   executionCount: number;
 
-  @ManyToOne(
-    () => Achievement,
-    (achievement) => achievement.poseExecutionCounts,
-  )
+  @ManyToOne(() => Achievement, (achievement) => achievement.poseExecutionCount)
   @Field(() => Achievement)
   achievement: Achievement;
 }

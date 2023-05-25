@@ -3,7 +3,7 @@ export const achievementsSeed = [
     achievementName: 'Pose Combo Achievement',
     achievementDate: new Date(),
     achievementPoints: 100,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Warrior I', executionCount: 5 },
       { pose: 'Downward Dog', executionCount: 10 },
     ],
@@ -12,13 +12,13 @@ export const achievementsSeed = [
     achievementName: 'Individual Pose Achievement',
     achievementDate: new Date(),
     achievementPoints: 50,
-    poseExecutionCounts: [{ pose: 'Tree Pose', executionCount: 8 }],
+    poseExecutionCount: [{ pose: 'Tree Pose', executionCount: 8 }],
   },
   {
     achievementName: 'Enlightened Serenity',
     achievementDate: new Date(),
     achievementPoints: 150,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Lotus Pose', executionCount: 10 },
       { pose: 'Corpse Pose', executionCount: 20 },
     ],
@@ -27,7 +27,7 @@ export const achievementsSeed = [
     achievementName: 'Divine Harmony',
     achievementDate: new Date(),
     achievementPoints: 120,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Sun Salutation', executionCount: 15 },
       { pose: 'Triangle Pose', executionCount: 10 },
     ],
@@ -36,7 +36,7 @@ export const achievementsSeed = [
     achievementName: 'Soulful Transformation',
     achievementDate: new Date(),
     achievementPoints: 180,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Warrior II', executionCount: 12 },
       { pose: "Child's Pose", executionCount: 18 },
     ],
@@ -45,7 +45,7 @@ export const achievementsSeed = [
     achievementName: 'Celestial Bliss',
     achievementDate: new Date(),
     achievementPoints: 200,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Wheel Pose', executionCount: 8 },
       { pose: 'Headstand', executionCount: 10 },
       { pose: 'Crow Pose', executionCount: 15 },
@@ -55,7 +55,7 @@ export const achievementsSeed = [
     achievementName: 'Eternal Tranquility',
     achievementDate: new Date(),
     achievementPoints: 160,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Mountain Pose', executionCount: 25 },
       { pose: 'Seated Forward Bend', executionCount: 10 },
     ],
@@ -64,7 +64,7 @@ export const achievementsSeed = [
     achievementName: 'Spiritual Awakening',
     achievementDate: new Date(),
     achievementPoints: 140,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Tree Pose', executionCount: 20 },
       { pose: 'Bridge Pose', executionCount: 12 },
     ],
@@ -73,7 +73,7 @@ export const achievementsSeed = [
     achievementName: 'Cosmic Unity',
     achievementDate: new Date(),
     achievementPoints: 170,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Eagle Pose', executionCount: 15 },
       { pose: 'Half Moon Pose', executionCount: 12 },
     ],
@@ -82,7 +82,7 @@ export const achievementsSeed = [
     achievementName: 'Infinite Stillness',
     achievementDate: new Date(),
     achievementPoints: 190,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Extended Triangle Pose', executionCount: 10 },
       { pose: 'Plank Pose', executionCount: 20 },
     ],
@@ -91,7 +91,7 @@ export const achievementsSeed = [
     achievementName: 'Transcendent Balance',
     achievementDate: new Date(),
     achievementPoints: 130,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Warrior I', executionCount: 20 },
       { pose: "Dancer's Pose", executionCount: 8 },
     ],
@@ -100,7 +100,7 @@ export const achievementsSeed = [
     achievementName: 'Sacred Renewal',
     achievementDate: new Date(),
     achievementPoints: 175,
-    poseExecutionCounts: [
+    poseExecutionCount: [
       { pose: 'Cobra Pose', executionCount: 15 },
       { pose: 'Pigeon Pose', executionCount: 10 },
     ],
