@@ -3,10 +3,10 @@ import { AchievementService } from './achievement.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Achievement } from './entities/achievement.entity';
 import { AchievementSeedService } from './seeds/achievement.seed.service';
-import { ClearDbService } from '../database/clear-database.service';
 import { AchievementResolver } from './achievement.resolver';
 import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
+import { ClearAchievementDbService } from 'src/database/clear-achievement-database.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Achievement, YogaPose])],
@@ -15,7 +15,7 @@ import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
     AchievementResolver,
     YogaPoseService,
     AchievementSeedService,
-    ClearDbService,
+    ClearAchievementDbService,
   ],
 })
 export class AchievementModule {}
