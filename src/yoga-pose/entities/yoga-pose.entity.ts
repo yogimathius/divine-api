@@ -1,6 +1,13 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { UserYogaPose } from '../../user-yoga-pose/entities/user-yoga-pose.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+} from 'typeorm';
+import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @Entity()
 @ObjectType()
@@ -27,4 +34,11 @@ export class YogaPose {
 
   @OneToMany(() => UserYogaPose, (userYogaPose) => userYogaPose.pose)
   userYogaPoses: UserYogaPose[];
+
+  @ManyToMany(
+    () => AchievementCondition,
+    (achievementConditions) => achievementConditions.yogaPose,
+  )
+  @Field(() => YogaPose)
+  achievementConditions: AchievementCondition[];
 }
