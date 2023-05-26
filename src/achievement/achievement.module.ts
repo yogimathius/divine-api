@@ -7,13 +7,18 @@ import { AchievementResolver } from './achievement.resolver';
 import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
 import { ClearAchievementDbService } from 'src/database/clear-achievement-database.service';
+import { AchievementConditionService } from 'src/achievement-condition/achievement-condition.service';
+import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Achievement, YogaPose])],
+  imports: [
+    TypeOrmModule.forFeature([Achievement, YogaPose, AchievementCondition]),
+  ],
   providers: [
     AchievementService,
     AchievementResolver,
     YogaPoseService,
+    AchievementConditionService,
     AchievementSeedService,
     ClearAchievementDbService,
   ],
