@@ -1,8 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import {
-  Achievement,
-  PoseExecutionCount,
-} from 'src/achievement/entities/achievement.entity';
+import { Achievement } from 'src/achievement/entities/achievement.entity';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
 import {
   Entity,
@@ -20,19 +17,18 @@ export class AchievementCondition {
   @Field(() => ID)
   achievementConditionId: number;
 
-  @Column()
-  @Field()
-  pose: string;
-
   @ManyToMany(() => YogaPose, (yogaPose) => yogaPose.achievementConditions)
   @Field(() => YogaPose)
-  yogaPose: PoseExecutionCount[];
+  yogaPose: YogaPose;
 
   @Column()
   @Field()
   executionCount: number;
 
-  @ManyToOne(() => Achievement, (achievement) => achievement.poseExecutionCount)
+  @ManyToOne(
+    () => Achievement,
+    (achievement) => achievement.achievementConditions,
+  )
   @Field(() => Achievement)
   achievement: Achievement;
 }

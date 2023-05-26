@@ -1,6 +1,7 @@
 import { InputType, Field, Int, ID } from '@nestjs/graphql';
 import { ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @InputType()
 export class CreateAchievementInput {
@@ -13,20 +14,8 @@ export class CreateAchievementInput {
   @Field(() => Int)
   achievementPoints: number;
 
-  @Field(() => [PoseExecutionCountInput])
+  @Field(() => [AchievementCondition])
   @ValidateNested({ each: true })
-  @Type(() => PoseExecutionCountInput)
-  poseExecutionCount: PoseExecutionCountInput[];
-}
-
-@InputType()
-class PoseExecutionCountInput {
-  @Field()
-  pose: string;
-
-  @Field(() => Int)
-  executionCount: number;
-
-  @Field(() => ID)
-  achievementId: number;
+  @Type(() => AchievementCondition)
+  achievementConditionId: number[];
 }

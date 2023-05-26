@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -28,30 +29,9 @@ export class Achievement {
   achievementPoints: number;
 
   @OneToMany(
-    () => PoseExecutionCount,
-    (poseExecutionCount) => poseExecutionCount.achievement,
+    () => AchievementCondition,
+    (achievementConditions) => achievementConditions.achievement,
   )
-  @Field(() => PoseExecutionCount)
-  poseExecutionCount: PoseExecutionCount[];
-}
-
-// PoseExecutionCount entity
-@ObjectType()
-@Entity()
-export class PoseExecutionCount {
-  @PrimaryGeneratedColumn()
-  @Field(() => ID)
-  poseExecutionCountId: number;
-
-  @Column()
-  @Field()
-  pose: string;
-
-  @Column()
-  @Field()
-  executionCount: number;
-
-  @ManyToOne(() => Achievement, (achievement) => achievement.poseExecutionCount)
-  @Field(() => Achievement)
-  achievement: Achievement;
+  @Field(() => AchievementCondition)
+  achievementConditions: AchievementCondition[];
 }

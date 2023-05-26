@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Achievement } from './entities/achievement.entity';
 import { CreateAchievementInput } from './dtos/create-achievement.input';
 import { UpdateAchievementInput } from './dtos/update-achievement.input';
+import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @Injectable()
 export class AchievementService {
@@ -12,6 +13,8 @@ export class AchievementService {
   constructor(
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
+    @InjectRepository(AchievementCondition)
+    private readonly achievementConditionRepository: Repository<AchievementCondition>,
   ) {
     this.logger = new Logger('achievement service');
   }
@@ -25,8 +28,29 @@ export class AchievementService {
   }
 
   async create(achievementInput: CreateAchievementInput): Promise<Achievement> {
-    const achievement = this.achievementRepository.create(achievementInput);
-    return this.achievementRepository.save(achievement);
+    const { achievementCondition, ...achievementData } = achievementInput;
+
+    const achievement = this.achievementRepository.create(achievementData);
+    const createdAchievement = await this.achievementRepository.save(
+      achievement,
+    );
+
+    const achievementConditionEntities = achievementCondition.map(
+      (poseCount) => {
+        const achievementConditionEntity =
+          this.achievementConditionRepository.create({
+            ...poseCount,
+            achievement: createdAchievement,
+          });
+        return achievementConditionEntity;
+      },
+    );
+
+    await this.achievementConditionRepository.save(
+      achievementConditionEntities,
+    );
+
+    return createdAchievement;
   }
 
   async update(
