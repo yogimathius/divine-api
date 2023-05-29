@@ -60,8 +60,8 @@ type Query {
   yogaPoses: [YogaPose!]!
   yogaPose(id: Int!): YogaPose!
   userYogaPoses(userId: ID!): [UserYogaPose!]!
-  achievements: [Achievement!]!
-  achievement(id: Int!): Achievement!
+  achievements: [AchievementCondition!]!
+  achievement(id: Int!): AchievementCondition!
 }
 
 type Mutation {
@@ -78,6 +78,9 @@ type Mutation {
   createAchievement(createAchievementInput: CreateAchievementInput!): Achievement!
   updateAchievement(id: Float!, input: UpdateAchievementInput!): Achievement!
   deleteAchievement(id: Int!): Boolean!
+  createAchievementCondition(createAchievementConditionInput: CreateAchievementConditionInput!): AchievementCondition!
+  updateAchievementCondition(id: Float!, input: UpdateAchievementConditionInput!): AchievementCondition!
+  deleteAchievementCondition(id: Int!): Boolean!
 }
 
 input SignupCredentialsDto {
@@ -130,13 +133,24 @@ input CreateAchievementInput {
   achievementName: String!
   achievementDate: String!
   achievementPoints: Int!
-  achievementConditionIds: [ID!]!
 }
 
 input UpdateAchievementInput {
   achievementName: String
   achievementDate: String
   achievementPoints: Int
-  achievementConditionIds: [ID!]
   achievementId: Int!
+}
+
+input CreateAchievementConditionInput {
+  poseName: String!
+  executionCount: Int!
+  achievementName: String!
+}
+
+input UpdateAchievementConditionInput {
+  poseName: String
+  executionCount: Int
+  achievementName: String
+  achievementConditionId: Int!
 }
