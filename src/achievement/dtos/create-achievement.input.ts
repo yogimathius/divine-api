@@ -13,7 +13,4 @@ export class CreateAchievementInput {
 
   @Field(() => Int)
   achievementPoints: number;
-
-  @Field(() => [ID])
-  achievementConditionIds: number[];
 }

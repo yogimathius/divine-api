@@ -28,19 +28,15 @@ export class AchievementService {
   }
 
   async create(achievementInput: CreateAchievementInput): Promise<Achievement> {
-    const { achievementConditionIds, ...achievementData } = achievementInput;
-
-    const achievement = this.achievementRepository.create(achievementData);
+    const achievement = this.achievementRepository.create(achievementInput);
     const createdAchievement = await this.achievementRepository.save(
       achievement,
     );
 
-    // const achievementConditionEntities = achievementCondition.map(
+    // const achievementConditionEntities = achievementConditions.map(
     //   (achievementConditionid) => {
     //     const achievementConditionEntity =
-    //       this.achievementConditionRepository.findOneById(
-    //         achievementConditionid,
-    //       );
+    //       this.achievementConditionRepository.create(achievementConditionid);
     //     return achievementConditionEntity;
     //   },
     // );
@@ -54,9 +50,9 @@ export class AchievementService {
 
   async update(
     id: number,
-    achievement_data: UpdateAchievementInput,
+    achievementInput: UpdateAchievementInput,
   ): Promise<Achievement> {
-    await this.achievementRepository.update(id, achievement_data);
+    await this.achievementRepository.update(id, achievementInput);
     return this.achievementRepository.findOneBy({ achievementId: id });
   }
 
