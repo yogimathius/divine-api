@@ -16,9 +16,9 @@ export class YogaPoseSeedService {
   }
 
   async seed(): Promise<void> {
-    for (const pose of yogaPosesSeed) {
+    for (const pose in yogaPosesSeed) {
       this.logger.verbose('adding new pose to db: ', pose);
-      const yogaPose = this.yogaPoseRepository.create(pose);
+      const yogaPose = this.yogaPoseRepository.create(yogaPosesSeed[pose]);
       this.logger.verbose('new pose created: ', { yogaPose });
 
       await this.yogaPoseRepository.save(yogaPose);
