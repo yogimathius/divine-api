@@ -16,12 +16,14 @@ export class AchievementSeedService {
   }
 
   async seed(): Promise<void> {
-    for (const achievementSeed of achievementsSeed) {
+    for (const achievementSeed in achievementsSeed) {
       this.logger.verbose(
         'adding new achievementSeed to db: ',
         achievementSeed,
       );
-      const achievement = this.achievementRepository.create(achievementSeed);
+      const achievement = this.achievementRepository.create(
+        achievementsSeed[achievementSeed],
+      );
       this.logger.verbose('new achievementSeed created: ', { achievement });
 
       await this.achievementRepository.save(achievement);
