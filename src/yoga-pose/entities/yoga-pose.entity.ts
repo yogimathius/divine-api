@@ -7,7 +7,6 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
-import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @Entity()
 @ObjectType()
@@ -34,11 +33,4 @@ export class YogaPose {
 
   @OneToMany(() => UserYogaPose, (userYogaPose) => userYogaPose.pose)
   userYogaPoses: UserYogaPose[];
-
-  @ManyToMany(
-    () => AchievementCondition,
-    (achievementConditions) => achievementConditions.yogaPose,
-  )
-  @Field(() => YogaPose)
-  achievementConditions: AchievementCondition[];
 }

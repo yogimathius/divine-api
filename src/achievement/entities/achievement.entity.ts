@@ -1,5 +1,4 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

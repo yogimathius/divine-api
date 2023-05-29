@@ -8,7 +8,6 @@ type YogaPose {
   poseDescription: String!
   poseImagePath: String!
   posePoints: Float!
-  achievementConditions: YogaPose!
 }
 
 type UserYogaPose {
@@ -133,9 +132,9 @@ input CreateAchievementInput {
 }
 
 input ConditionInput {
-  poseName: String!
+  poseId: ID!
   executionCount: Int!
-  achievementName: String!
+  achievementId: ID!
 }
 
 input UpdateAchievementInput {
