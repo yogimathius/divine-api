@@ -6,7 +6,9 @@ import {
   Column,
   OneToMany,
   ManyToOne,
+  JoinTable,
 } from 'typeorm';
+import { Condition } from './condition.entity';
 
 // Achievement entity
 @ObjectType()
@@ -28,10 +30,8 @@ export class Achievement {
   @Field()
   achievementPoints: number;
 
-  @OneToMany(
-    () => AchievementCondition,
-    (achievementConditions) => achievementConditions.achievement,
-  )
-  @Field(() => AchievementCondition)
-  achievementConditions: AchievementCondition[];
+  @Field(() => Condition)
+  @OneToMany(() => Condition, (condition) => condition.achievement)
+  @JoinTable()
+  conditions: Condition[];
 }

@@ -8,7 +8,6 @@ import { UserModule } from './user/user.module';
 import { YogaPoseModule } from './yoga-pose/yoga-pose.module';
 import { UserYogaPoseModule } from './user-yoga-pose/user-yoga-pose.module';
 import { AchievementModule } from './achievement/achievement.module';
-import { AchievementConditionModule } from './achievement-condition/achievement-condition.module';
 
 @Module({
   imports: [
@@ -27,7 +26,6 @@ import { AchievementConditionModule } from './achievement-condition/achievement-
     YogaPoseModule,
     UserYogaPoseModule,
     AchievementModule,
-    AchievementConditionModule,
   ],
 })
 export class AppModule {}

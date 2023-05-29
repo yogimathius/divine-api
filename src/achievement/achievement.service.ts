@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { Achievement } from './entities/achievement.entity';
 import { CreateAchievementInput } from './dtos/create-achievement.input';
 import { UpdateAchievementInput } from './dtos/update-achievement.input';
-import { AchievementCondition } from 'src/achievement-condition/entities/achievement-condition.entity';
 
 @Injectable()
 export class AchievementService {
@@ -13,8 +12,6 @@ export class AchievementService {
   constructor(
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
-    @InjectRepository(AchievementCondition)
-    private readonly achievementConditionRepository: Repository<AchievementCondition>,
   ) {
     this.logger = new Logger('achievement service');
   }
