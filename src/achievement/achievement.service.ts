@@ -28,27 +28,26 @@ export class AchievementService {
   }
 
   async create(achievementInput: CreateAchievementInput): Promise<Achievement> {
-    const { achievementCondition, ...achievementData } = achievementInput;
+    const { achievementConditionIds, ...achievementData } = achievementInput;
 
     const achievement = this.achievementRepository.create(achievementData);
     const createdAchievement = await this.achievementRepository.save(
       achievement,
     );
 
-    const achievementConditionEntities = achievementCondition.map(
-      (poseCount) => {
-        const achievementConditionEntity =
-          this.achievementConditionRepository.create({
-            ...poseCount,
-            achievement: createdAchievement,
-          });
-        return achievementConditionEntity;
-      },
-    );
+    // const achievementConditionEntities = achievementCondition.map(
+    //   (achievementConditionid) => {
+    //     const achievementConditionEntity =
+    //       this.achievementConditionRepository.findOneById(
+    //         achievementConditionid,
+    //       );
+    //     return achievementConditionEntity;
+    //   },
+    // );
 
-    await this.achievementConditionRepository.save(
-      achievementConditionEntities,
-    );
+    // await this.achievementConditionRepository.save(
+    //   achievementConditionEntities,
+    // );
 
     return createdAchievement;
   }

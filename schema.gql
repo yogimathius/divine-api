@@ -2,12 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Achievement {
+  achievementId: ID!
+  achievementName: String!
+  achievementDate: DateTime!
+  achievementPoints: Float!
+  achievementConditions: AchievementCondition!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type AchievementCondition {
+  achievementConditionId: ID!
+  yogaPose: YogaPose!
+  executionCount: Float!
+  achievement: Achievement!
+}
+
 type YogaPose {
   poseId: ID!
   poseName: String!
   poseDescription: String!
   poseImagePath: String!
   posePoints: Float!
+  achievementConditions: YogaPose!
 }
 
 type UserYogaPose {
@@ -16,11 +37,6 @@ type UserYogaPose {
   pose: YogaPose!
   completion_date: DateTime!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 """user """
 type User {
@@ -36,21 +52,6 @@ type AuthPayload {
   token: String!
   expiration: Float!
   user: User!
-}
-
-type Achievement {
-  achievementId: ID!
-  achievementName: String!
-  achievementDate: DateTime!
-  achievementPoints: Float!
-  poseExecutionCount: PoseExecutionCount!
-}
-
-type PoseExecutionCount {
-  poseExecutionCountId: ID!
-  pose: String!
-  executionCount: Float!
-  achievement: Achievement!
 }
 
 type Query {
@@ -129,19 +130,13 @@ input CreateAchievementInput {
   achievementName: String!
   achievementDate: String!
   achievementPoints: Int!
-  poseExecutionCount: [PoseExecutionCountInput!]!
-}
-
-input PoseExecutionCountInput {
-  pose: String!
-  executionCount: Int!
-  achievementId: ID!
+  achievementConditionIds: [ID!]!
 }
 
 input UpdateAchievementInput {
   achievementName: String
   achievementDate: String
   achievementPoints: Int
-  poseExecutionCount: [PoseExecutionCountInput!]
+  achievementConditionIds: [ID!]
   achievementId: Int!
 }

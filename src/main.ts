@@ -25,7 +25,7 @@ async function bootstrap() {
   // const yogaPoseSeedService = app.get(YogaPoseSeedService);
   // await yogaPoseSeedService.seed();
   const achievementSeedService = app.get(AchievementSeedService);
-  await achievementSeedService.seed();
+  // await achievementSeedService.seed();
 
   await app.listen(3000);
 }

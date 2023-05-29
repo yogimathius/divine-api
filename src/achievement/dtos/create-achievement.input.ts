@@ -14,8 +14,6 @@ export class CreateAchievementInput {
   @Field(() => Int)
   achievementPoints: number;
 
-  @Field(() => [AchievementCondition])
-  @ValidateNested({ each: true })
-  @Type(() => AchievementCondition)
-  achievementConditionId: number[];
+  @Field(() => [ID])
+  achievementConditionIds: number[];
 }
