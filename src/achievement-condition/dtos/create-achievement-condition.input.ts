@@ -4,12 +4,12 @@ import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
 
 @InputType()
 export class CreateAchievementConditionInput {
-  @Field(() => ID)
-  yogaPoseId: number;
+  @Field(() => String)
+  poseName: string;
 
   @Field(() => Int)
   executionCount: number;
 
-  @Field(() => ID)
-  achievementId: number;
+  @Field(() => String)
+  achievementName: string;
 }
