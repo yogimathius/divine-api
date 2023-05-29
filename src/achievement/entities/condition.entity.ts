@@ -7,6 +7,7 @@ import {
   Column,
   ManyToOne,
   ManyToMany,
+  JoinColumn,
 } from 'typeorm';
 
 // AchievementCondition entity
@@ -17,14 +18,19 @@ export class Condition {
   @Field(() => ID)
   id: number;
 
-  @ManyToOne(() => Condition, (condition) => condition.yogaPose)
+  @ManyToOne(() => Achievement, (achievement) => achievement.conditions)
+  @JoinColumn({
+    name: 'achievementName',
+    referencedColumnName: 'achievementName',
+  })
+  achievement: Achievement;
+
+  @ManyToOne(() => YogaPose, (yogaPose) => yogaPose.conditions)
+  @JoinColumn({ name: 'poseName', referencedColumnName: 'poseName' })
   @Field(() => YogaPose)
   yogaPose: YogaPose;
 
   @Column()
   @Field()
   executionCount: number;
-
-  @ManyToOne(() => Condition, (condition) => condition.achievement)
-  achievement: Achievement;
 }

@@ -24,6 +24,10 @@ export class YogaPoseService {
     return this.yogaPoseRepository.findOneBy({ poseId: id });
   }
 
+  async findByName(poseName: string): Promise<YogaPose> {
+    return this.yogaPoseRepository.findOneBy({ poseName: poseName });
+  }
+
   async create(yogaPoseInput: CreateYogaPoseInput): Promise<YogaPose> {
     const yogaPose = this.yogaPoseRepository.create(yogaPoseInput);
     return this.yogaPoseRepository.save(yogaPose);

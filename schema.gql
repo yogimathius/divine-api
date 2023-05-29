@@ -2,6 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Achievement {
+  achievementId: ID!
+  achievementName: String!
+  achievementPoints: Float!
+  conditions: Condition!
+}
+
+type Condition {
+  id: ID!
+  yogaPose: YogaPose!
+  executionCount: Float!
+}
+
 type YogaPose {
   poseId: ID!
   poseName: String!
@@ -36,20 +49,6 @@ type AuthPayload {
   token: String!
   expiration: Float!
   user: User!
-}
-
-type Condition {
-  id: ID!
-  yogaPose: YogaPose!
-  executionCount: Float!
-}
-
-type Achievement {
-  achievementId: ID!
-  achievementName: String!
-  achievementDate: DateTime!
-  achievementPoints: Float!
-  conditions: Condition!
 }
 
 type Query {
@@ -126,7 +125,6 @@ input CreateUserYogaPoseInput {
 
 input CreateAchievementInput {
   achievementName: String!
-  achievementDate: String!
   achievementPoints: Int!
   conditions: [ConditionInput!]!
 }
@@ -139,7 +137,6 @@ input ConditionInput {
 
 input UpdateAchievementInput {
   achievementName: String
-  achievementDate: String
   achievementPoints: Int
   conditions: [ConditionInput!]
   achievementId: Int!

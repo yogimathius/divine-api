@@ -1,13 +1,13 @@
-import { InputType, Field, Int } from '@nestjs/graphql';
+import { InputType, Field, Int, ID } from '@nestjs/graphql';
 
 @InputType()
 export class ConditionInput {
-  @Field(() => String)
-  poseName: string;
+  @Field(() => ID)
+  poseId: number;
 
   @Field(() => Int)
   executionCount: number;
 
-  @Field(() => String)
-  achievementName: string;
+  @Field(() => ID)
+  achievementId: number;
 }

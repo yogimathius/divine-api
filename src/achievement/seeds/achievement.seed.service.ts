@@ -25,17 +25,25 @@ export class AchievementSeedService {
     for (const achievementSeed in achievementsSeed) {
       this.logger.verbose(
         'adding new achievementSeed to db: ',
-        achievementSeed,
+        achievementsSeed[achievementSeed],
       );
       const achievement = this.achievementRepository.create(
         achievementsSeed[achievementSeed],
       );
       this.logger.verbose('new achievementSeed created: ', { achievement });
 
-      await this.achievementRepository.save(achievement);
+      const result = await this.achievementRepository.save(achievement);
+
+      this.logger.verbose('new achievementSeed saved: ', { result });
 
       for (const condition of achievementsSeed[achievementSeed].conditions) {
-        const conditionCreated = this.conditionRepository.create(condition);
+        const yogaPose = this.yogaPoseRepository.findBy({
+          poseName: condition.poseName,
+        });
+        const conditionCreated = this.conditionRepository.create({
+          ...condition,
+          ...yogaPose,
+        });
         this.logger.verbose('new achievementSeed created: ', {
           conditionCreated,
         });

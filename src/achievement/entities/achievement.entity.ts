@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  ManyToOne,
   JoinTable,
 } from 'typeorm';
 import { Condition } from './condition.entity';
@@ -17,13 +16,9 @@ export class Achievement {
   @Field(() => ID)
   achievementId: number;
 
-  @Column()
+  @Column({ unique: true })
   @Field()
   achievementName: string;
-
-  @Column()
-  @Field()
-  achievementDate: Date;
 
   @Column()
   @Field()

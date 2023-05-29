@@ -7,6 +7,7 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
+import { Condition } from 'src/achievement/entities/condition.entity';
 
 @Entity()
 @ObjectType()
@@ -33,4 +34,7 @@ export class YogaPose {
 
   @OneToMany(() => UserYogaPose, (userYogaPose) => userYogaPose.pose)
   userYogaPoses: UserYogaPose[];
+
+  @OneToMany(() => Condition, (condition) => condition.yogaPose)
+  conditions: Condition[];
 }

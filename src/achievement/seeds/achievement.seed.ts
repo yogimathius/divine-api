@@ -1,7 +1,6 @@
 export const achievementsSeed = {
   PoseComboAchievement: {
     achievementName: 'Pose Combo Achievement',
-    achievementDate: new Date(),
     achievementPoints: 100,
     conditions: [
       { poseName: 'Warrior I', executionCount: 5 },
@@ -10,13 +9,11 @@ export const achievementsSeed = {
   },
   IndividualPoseAchievement: {
     achievementName: 'Individual Pose Achievement',
-    achievementDate: new Date(),
     achievementPoints: 50,
     conditions: [{ poseName: 'Tree Pose', executionCount: 8 }],
   },
   EnlightenedSerenity: {
     achievementName: 'Enlightened Serenity',
-    achievementDate: new Date(),
     achievementPoints: 150,
     conditions: [
       { poseName: 'Lotus Pose', executionCount: 10 },
@@ -25,7 +22,6 @@ export const achievementsSeed = {
   },
   DivineHarmony: {
     achievementName: 'Divine Harmony',
-    achievementDate: new Date(),
     achievementPoints: 120,
     conditions: [
       { poseName: 'Sun Salutation', executionCount: 15 },
@@ -34,7 +30,6 @@ export const achievementsSeed = {
   },
   SoulfulTransformation: {
     achievementName: 'Soulful Transformation',
-    achievementDate: new Date(),
     achievementPoints: 180,
     conditions: [
       { poseName: 'Warrior II', executionCount: 12 },
@@ -43,7 +38,6 @@ export const achievementsSeed = {
   },
   CelestialBliss: {
     achievementName: 'Celestial Bliss',
-    achievementDate: new Date(),
     achievementPoints: 200,
     conditions: [
       { poseName: 'Wheel Pose', executionCount: 8 },
@@ -53,7 +47,6 @@ export const achievementsSeed = {
   },
   EternalTranquility: {
     achievementName: 'Eternal Tranquility',
-    achievementDate: new Date(),
     achievementPoints: 160,
     conditions: [
       { poseName: 'Mountain Pose', executionCount: 25 },
@@ -62,7 +55,6 @@ export const achievementsSeed = {
   },
   SpiritualAwakening: {
     achievementName: 'Spiritual Awakening',
-    achievementDate: new Date(),
     achievementPoints: 140,
     conditions: [
       { poseName: 'Tree Pose', executionCount: 20 },
@@ -71,7 +63,6 @@ export const achievementsSeed = {
   },
   CosmicUnity: {
     achievementName: 'Cosmic Unity',
-    achievementDate: new Date(),
     achievementPoints: 170,
     conditions: [
       { poseName: 'Eagle Pose', executionCount: 15 },
@@ -80,7 +71,6 @@ export const achievementsSeed = {
   },
   InfiniteStillness: {
     achievementName: 'Infinite Stillness',
-    achievementDate: new Date(),
     achievementPoints: 190,
     conditions: [
       { poseName: 'Extended Triangle Pose', executionCount: 10 },
@@ -89,7 +79,6 @@ export const achievementsSeed = {
   },
   TranscendentBalance: {
     achievementName: 'Transcendent Balance',
-    achievementDate: new Date(),
     achievementPoints: 130,
     conditions: [
       { poseName: 'Warrior I', executionCount: 20 },
@@ -98,7 +87,6 @@ export const achievementsSeed = {
   },
   SacredRenewal: {
     achievementName: 'Sacred Renewal',
-    achievementDate: new Date(),
     achievementPoints: 175,
     conditions: [
       { poseName: 'Cobra Pose', executionCount: 15 },

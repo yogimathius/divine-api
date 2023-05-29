@@ -8,9 +8,6 @@ export class CreateAchievementInput {
   @Field()
   achievementName: string;
 
-  @Field()
-  achievementDate: string;
-
   @Field(() => Int)
   achievementPoints: number;
 
