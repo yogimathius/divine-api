@@ -1,108 +1,115 @@
-export const achievementConditionsSeed = [
+import { CreateAchievementConditionInput } from '../dtos/create-achievement-condition.input';
+
+export const achievementConditionsSeed: CreateAchievementConditionInput[] = [
   {
-    achievementName: 'Pose Combo Achievement',
-    achievementDate: new Date(),
-    achievementPoints: 100,
-    achievementConditions: [
-      { yogaPose: 'Warrior I', executionCount: 5 },
-      { yogaPose: 'Downward Dog', executionCount: 10 },
-    ],
+    poseName: 'Warrior I',
+    executionCount: 5,
+    achievementName: 'PoseCombo',
   },
   {
-    achievementName: 'Individual Pose Achievement',
-    achievementDate: new Date(),
-    achievementPoints: 50,
-    achievementConditions: [{ yogaPose: 'Tree Pose', executionCount: 8 }],
+    poseName: 'Downward Dog',
+    executionCount: 10,
+    achievementName: 'PoseCombo',
   },
   {
-    achievementName: 'Enlightened Serenity',
-    achievementDate: new Date(),
-    achievementPoints: 150,
-    achievementConditions: [
-      { yogaPose: 'Lotus Pose', executionCount: 10 },
-      { yogaPose: 'Corpse Pose', executionCount: 20 },
-    ],
+    poseName: 'Tree Pose',
+    executionCount: 8,
+    achievementName: 'IndividualPose',
   },
   {
-    achievementName: 'Divine Harmony',
-    achievementDate: new Date(),
-    achievementPoints: 120,
-    achievementConditions: [
-      { yogaPose: 'Sun Salutation', executionCount: 15 },
-      { yogaPose: 'Triangle Pose', executionCount: 10 },
-    ],
+    poseName: 'Lotus Pose',
+    executionCount: 10,
+    achievementName: 'EnlightenedSerenity',
   },
   {
-    achievementName: 'Soulful Transformation',
-    achievementDate: new Date(),
-    achievementPoints: 180,
-    achievementConditions: [
-      { yogaPose: 'Warrior II', executionCount: 12 },
-      { yogaPose: "Child's Pose", executionCount: 18 },
-    ],
+    poseName: 'Corpse Pose',
+    executionCount: 20,
+    achievementName: 'EnlightenedSerenity',
   },
   {
-    achievementName: 'Celestial Bliss',
-    achievementDate: new Date(),
-    achievementPoints: 200,
-    achievementConditions: [
-      { yogaPose: 'Wheel Pose', executionCount: 8 },
-      { yogaPose: 'Headstand', executionCount: 10 },
-      { yogaPose: 'Crow Pose', executionCount: 15 },
-    ],
+    poseName: 'Sun Salutation',
+    executionCount: 15,
+    achievementName: 'DivineHarmony',
   },
   {
-    achievementName: 'Eternal Tranquility',
-    achievementDate: new Date(),
-    achievementPoints: 160,
-    achievementConditions: [
-      { yogaPose: 'Mountain Pose', executionCount: 25 },
-      { yogaPose: 'Seated Forward Bend', executionCount: 10 },
-    ],
+    poseName: 'Triangle Pose',
+    executionCount: 10,
+    achievementName: 'DivineHarmony',
   },
   {
-    achievementName: 'Spiritual Awakening',
-    achievementDate: new Date(),
-    achievementPoints: 140,
-    achievementConditions: [
-      { yogaPose: 'Tree Pose', executionCount: 20 },
-      { yogaPose: 'Bridge Pose', executionCount: 12 },
-    ],
+    poseName: 'Warrior II',
+    executionCount: 12,
+    achievementName: 'SoulfulTransformation',
   },
   {
-    achievementName: 'Cosmic Unity',
-    achievementDate: new Date(),
-    achievementPoints: 170,
-    achievementConditions: [
-      { yogaPose: 'Eagle Pose', executionCount: 15 },
-      { yogaPose: 'Half Moon Pose', executionCount: 12 },
-    ],
+    poseName: "Child's Pose",
+    executionCount: 18,
+    achievementName: 'SoulfulTransformation',
   },
   {
-    achievementName: 'Infinite Stillness',
-    achievementDate: new Date(),
-    achievementPoints: 190,
-    achievementConditions: [
-      { yogaPose: 'Extended Triangle Pose', executionCount: 10 },
-      { yogaPose: 'Plank Pose', executionCount: 20 },
-    ],
+    poseName: 'Wheel Pose',
+    executionCount: 8,
+    achievementName: 'CelestialBliss',
   },
   {
-    achievementName: 'Transcendent Balance',
-    achievementDate: new Date(),
-    achievementPoints: 130,
-    achievementConditions: [
-      { yogaPose: 'Warrior I', executionCount: 20 },
-      { yogaPose: "Dancer's Pose", executionCount: 8 },
-    ],
+    poseName: 'Headstand',
+    executionCount: 10,
+    achievementName: 'CelestialBliss',
   },
   {
-    achievementName: 'Sacred Renewal',
-    achievementDate: new Date(),
-    achievementPoints: 175,
-    achievementConditions: [
-      { yogaPose: 'Cobra Pose', executionCount: 15 },
-      { yogaPose: 'Pigeon Pose', executionCount: 10 },
-    ],
+    poseName: 'Crow Pose',
+    executionCount: 15,
+    achievementName: 'CelestialBliss',
   },
+  {
+    poseName: 'Mountain Pose',
+    executionCount: 25,
+    achievementName: 'EternalTranquility',
+  },
+  {
+    poseName: 'Seated Forward Bend',
+    executionCount: 10,
+    achievementName: 'EternalTranquility',
+  },
+  {
+    poseName: 'Warrior III',
+    executionCount: 10,
+    achievementName: 'SpiritualAwakening',
+  },
+  {
+    poseName: 'Chair Pose',
+    executionCount: 15,
+    achievementName: 'SpiritualAwakening',
+  },
+  {
+    poseName: 'Extended Triangle Pose',
+    executionCount: 12,
+    achievementName: 'CosmicUnity',
+  },
+  {
+    poseName: 'Plank Pose',
+    executionCount: 20,
+    achievementName: 'CosmicUnity',
+  },
+  {
+    poseName: 'Warrior I',
+    executionCount: 20,
+    achievementName: 'TranscendentBalance',
+  },
+  {
+    poseName: "Dancer's Pose",
+    executionCount: 8,
+    achievementName: 'TranscendentBalance',
+  },
+  {
+    poseName: 'Cobra Pose',
+    executionCount: 15,
+    achievementName: 'SacredRenewal',
+  },
+  {
+    poseName: 'Pigeon Pose',
+    executionCount: 10,
+    achievementName: 'SacredRenewal',
+  },
+  // Add more achievement conditions here...
 ];
