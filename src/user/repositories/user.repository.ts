@@ -46,7 +46,7 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  async getUser(id: number): Promise<User> {
+  async getUser(id: string): Promise<User> {
     const query = this.createQueryBuilder('user');
 
     try {

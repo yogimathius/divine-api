@@ -1,13 +1,16 @@
 import { InputType, Field, Int, ID } from '@nestjs/graphql';
+import { IsString } from 'class-validator';
 
 @InputType()
 export class ConditionInput {
   @Field(() => ID)
-  poseId: number;
+  @IsString()
+  poseId: string;
 
   @Field(() => Int)
   executionCount: number;
 
   @Field(() => ID)
-  achievementId: number;
+  @IsString()
+  achievementId: string;
 }

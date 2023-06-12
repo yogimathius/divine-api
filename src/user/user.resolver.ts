@@ -10,7 +10,7 @@ export class UserResolver {
   constructor(private readonly usersService: UserService) {}
 
   @Query(() => User)
-  async user(@Args({ name: 'id', type: () => ID }) id: number): Promise<User> {
+  async user(@Args({ name: 'id', type: () => ID }) id: string): Promise<User> {
     return this.usersService.findOneById(id);
   }
 
@@ -26,7 +26,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   async updateUser(
-    @Args({ name: 'id', type: () => ID }) id: number,
+    @Args({ name: 'id', type: () => ID }) id: string,
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
   ): Promise<Partial<User>> {
     return this.usersService.update(id, updateUserInput);
@@ -34,7 +34,7 @@ export class UserResolver {
 
   @Mutation(() => Boolean)
   async deleteUser(
-    @Args({ name: 'id', type: () => ID }) id: number,
+    @Args({ name: 'id', type: () => ID }) id: string,
   ): Promise<boolean> {
     return this.usersService.remove(id);
   }

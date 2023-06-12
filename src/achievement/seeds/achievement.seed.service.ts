@@ -3,8 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Achievement } from '../entities/achievement.entity';
 import { achievementsSeed } from './achievement.seed';
-import { Condition } from '../entities/condition.entity';
+import { conditionsSeed } from '../../condition/seeds/condition.seed';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
+import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
+import { Condition } from '../..//condition/entities/condition.entity';
 
 @Injectable()
 export class AchievementSeedService {
@@ -17,38 +19,59 @@ export class AchievementSeedService {
     private readonly conditionRepository: Repository<Condition>,
     @InjectRepository(YogaPose)
     private readonly yogaPoseRepository: Repository<YogaPose>,
+    private readonly yogaPoseService: YogaPoseService,
   ) {
     this.logger = new Logger('achievement seed service');
   }
 
   async seed(): Promise<void> {
     for (const achievementSeed in achievementsSeed) {
-      this.logger.verbose(
-        'adding new achievementSeed to db: ',
-        achievementsSeed[achievementSeed],
-      );
       const achievement = this.achievementRepository.create(
         achievementsSeed[achievementSeed],
       );
-      this.logger.verbose('new achievementSeed created: ', { achievement });
 
-      const result = await this.achievementRepository.save(achievement);
+      this.logger.verbose('adding new achievementSeed to db: ', achievement);
+      const saved = await this.achievementRepository.save(
+        achievementsSeed[achievementSeed],
+      );
 
-      this.logger.verbose('new achievementSeed saved: ', { result });
+      this.logger.verbose('saved achievment: ', { saved });
 
-      for (const condition of achievementsSeed[achievementSeed].conditions) {
-        const yogaPose = this.yogaPoseRepository.findBy({
-          poseName: condition.poseName,
+      const conditions = conditionsSeed[achievementSeed];
+
+      this.logger.verbose('found conditions: ', { conditions });
+      for (const conditionSeed in conditions) {
+        const conditionCreating = conditions[conditionSeed];
+        this.logger.verbose('condition: ', {
+          conditionCreating,
         });
-        const conditionCreated = this.conditionRepository.create({
-          ...condition,
-          ...yogaPose,
+        const condition = new Condition();
+        this.logger.verbose('new condition Seed created: ', {
+          condition,
         });
-        this.logger.verbose('new achievementSeed created: ', {
-          conditionCreated,
+        condition.executionCount = conditionCreating.executionCount;
+        this.logger.verbose('added execution count to condition', {
+          condition,
         });
 
-        await this.conditionRepository.save(conditionCreated);
+        condition.achievement = saved;
+        this.logger.verbose('added achievement to condition', {
+          condition,
+        });
+
+        const yogaPose = await this.yogaPoseService.findById(
+          conditionCreating.poseId,
+        );
+
+        this.logger.verbose('found yoga pose: ', {
+          yogaPose,
+        });
+        condition.yogaPose = yogaPose;
+        this.logger.verbose('added yogapose to condition', {
+          condition,
+        });
+
+        await this.conditionRepository.save(condition);
       }
     }
   }

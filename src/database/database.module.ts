@@ -10,6 +10,7 @@ import { UserYogaPose } from 'src/user-yoga-pose/entities/user-yoga-pose.entity'
 import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 import { AchievementService } from 'src/achievement/achievement.service';
 import { Achievement } from 'src/achievement/entities/achievement.entity';
+import { Condition } from '../condition/entities/condition.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,13 @@ import { Achievement } from 'src/achievement/entities/achievement.entity';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User, YogaPose, UserYogaPose, Achievement]),
+    TypeOrmModule.forFeature([
+      User,
+      YogaPose,
+      UserYogaPose,
+      Achievement,
+      Condition,
+    ]),
   ],
   providers: [
     UserRepository,

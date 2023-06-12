@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
 import { Achievement } from './entities/achievement.entity';
 import { AchievementService } from './achievement.service';
 import { CreateAchievementInput } from './dtos/create-achievement.input';
@@ -15,7 +15,7 @@ export class AchievementResolver {
 
   @Query(() => Achievement)
   async achievement(
-    @Args('id', { type: () => Int }) id: number,
+    @Args('id', { type: () => ID }) id: string,
   ): Promise<Achievement> {
     return this.achievementService.findById(id);
   }
@@ -30,7 +30,7 @@ export class AchievementResolver {
 
   @Mutation(() => Achievement)
   updateAchievement(
-    @Args('id') id: number,
+    @Args('id') id: string,
     @Args('input') input: UpdateAchievementInput,
   ) {
     return this.achievementService.update(id, input);
@@ -38,7 +38,7 @@ export class AchievementResolver {
 
   @Mutation(() => Boolean)
   async deleteAchievement(
-    @Args('id', { type: () => Int }) id: number,
+    @Args('id', { type: () => ID }) id: string,
   ): Promise<boolean> {
     await this.achievementService.delete(id);
     return true;

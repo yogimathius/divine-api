@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Achievement } from 'src/achievement/entities/achievement.entity';
-import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
+import { Achievement } from '../../achievement/entities/achievement.entity';
+import { YogaPose } from '../../yoga-pose/entities/yoga-pose.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

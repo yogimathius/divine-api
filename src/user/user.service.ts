@@ -51,7 +51,7 @@ export class UserService {
     }
   }
 
-  async findOneById(id: number): Promise<User> {
+  async findOneById(id: string): Promise<User> {
     return this.userRepository.findOneBy({ id });
   }
 
@@ -74,7 +74,7 @@ export class UserService {
     });
   }
 
-  async update(id: number, data: Partial<User>): Promise<User> {
+  async update(id: string, data: Partial<User>): Promise<User> {
     this.logger.verbose('updating user with: ', data);
 
     const response = await this.userRepository.update(id, data);
@@ -84,7 +84,7 @@ export class UserService {
     return updatedUser;
   }
 
-  async remove(id: number): Promise<boolean> {
+  async remove(id: string): Promise<boolean> {
     const userFound = await this.userRepository.findOneBy({ id });
     if (!userFound) {
       return false;

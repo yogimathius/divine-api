@@ -3,10 +3,10 @@ import { InputType, Field, ID } from '@nestjs/graphql';
 @InputType()
 export class CreateUserYogaPoseInput {
   @Field(() => ID)
-  userId: number;
+  userId: string;
 
   @Field(() => ID)
-  poseId: number;
+  poseId: string;
 
   @Field()
   completionDate: Date;

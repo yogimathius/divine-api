@@ -5,16 +5,17 @@ import {
   Column,
   OneToMany,
   JoinTable,
+  PrimaryColumn,
 } from 'typeorm';
-import { Condition } from './condition.entity';
+import { Condition } from '../../condition/entities/condition.entity';
 
 // Achievement entity
 @ObjectType()
 @Entity()
 export class Achievement {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   @Field(() => ID)
-  achievementId: number;
+  achievementId: string;
 
   @Column({ unique: true })
   @Field()
@@ -24,8 +25,8 @@ export class Achievement {
   @Field()
   achievementPoints: number;
 
-  @Field(() => Condition)
+  // @Field(() => Condition)
   @OneToMany(() => Condition, (condition) => condition.achievement)
-  @JoinTable()
+  // @JoinTable()
   conditions: Condition[];
 }

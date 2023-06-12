@@ -1,20 +1,14 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { UserYogaPose } from '../../user-yoga-pose/entities/user-yoga-pose.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  ManyToMany,
-} from 'typeorm';
-import { Condition } from 'src/achievement/entities/condition.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Condition } from 'src/condition/entities/condition.entity';
 
 @Entity()
 @ObjectType()
 export class YogaPose {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)
-  poseId: number;
+  id: string;
 
   @Column({ unique: true })
   @Field()

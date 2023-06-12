@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
 import { YogaPose } from './entities/yoga-pose.entity';
 import { YogaPoseService } from './yoga-pose.service';
 import { CreateYogaPoseInput } from './dtos/create-yoga-pose.input';
@@ -15,9 +15,9 @@ export class YogaPoseResolver {
 
   @Query(() => YogaPose)
   async yogaPose(
-    @Args('id', { type: () => Int }) id: number,
+    @Args({ name: 'poseId', type: () => ID }) poseId: string,
   ): Promise<YogaPose> {
-    return this.yogaPoseService.findById(id);
+    return this.yogaPoseService.findById(poseId);
   }
 
   @Mutation(() => YogaPose)
@@ -29,7 +29,7 @@ export class YogaPoseResolver {
 
   @Mutation(() => YogaPose)
   updateYogaPose(
-    @Args('id') id: number,
+    @Args('id') id: string,
     @Args('input') input: UpdateYogaPoseInput,
   ) {
     return this.yogaPoseService.update(id, input);
@@ -37,7 +37,7 @@ export class YogaPoseResolver {
 
   @Mutation(() => Boolean)
   async deleteYogaPose(
-    @Args('id', { type: () => Int }) id: number,
+    @Args('id', { type: () => ID }) id: string,
   ): Promise<boolean> {
     await this.yogaPoseService.delete(id);
     return true;

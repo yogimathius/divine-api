@@ -1,4 +1,4 @@
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, PartialType, ID } from '@nestjs/graphql';
 import { IsNotEmpty, IsString, IsInt } from 'class-validator';
 import { CreateAchievementInput } from './create-achievement.input';
 
@@ -6,8 +6,8 @@ import { CreateAchievementInput } from './create-achievement.input';
 export class UpdateAchievementInput extends PartialType(
   CreateAchievementInput,
 ) {
-  @Field(() => Int)
+  @Field(() => ID)
   @IsNotEmpty()
-  @IsInt()
-  achievementId: number;
+  @IsString()
+  achievementId: string;
 }

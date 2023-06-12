@@ -8,7 +8,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 export class UserYogaPose {
   @PrimaryGeneratedColumn()
   @Field()
-  user_pose_id: number;
+  user_pose_id: string;
 
   @ManyToOne(() => User, (user) => user.userYogaPoses)
   @Field(() => User)

@@ -6,17 +6,10 @@ type Achievement {
   achievementId: ID!
   achievementName: String!
   achievementPoints: Float!
-  conditions: Condition!
-}
-
-type Condition {
-  id: ID!
-  yogaPose: YogaPose!
-  executionCount: Float!
 }
 
 type YogaPose {
-  poseId: ID!
+  id: ID!
   poseName: String!
   poseDescription: String!
   poseImagePath: String!
@@ -24,7 +17,7 @@ type YogaPose {
 }
 
 type UserYogaPose {
-  user_pose_id: Float!
+  user_pose_id: String!
   user: User!
   pose: YogaPose!
   completion_date: DateTime!
@@ -55,10 +48,10 @@ type Query {
   user(id: ID!): User!
   users(page: Int! = 1, limit: Int! = 10): [User!]!
   yogaPoses: [YogaPose!]!
-  yogaPose(id: Int!): YogaPose!
+  yogaPose(poseId: ID!): YogaPose!
   userYogaPoses(userId: ID!): [UserYogaPose!]!
   achievements: [Achievement!]!
-  achievement(id: Int!): Achievement!
+  achievement(id: ID!): Achievement!
 }
 
 type Mutation {
@@ -68,13 +61,13 @@ type Mutation {
   updateUser(id: ID!, updateUserInput: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
   createYogaPose(createYogaPoseInput: CreateYogaPoseInput!): YogaPose!
-  updateYogaPose(id: Float!, input: UpdateYogaPoseInput!): YogaPose!
-  deleteYogaPose(id: Int!): Boolean!
+  updateYogaPose(id: String!, input: UpdateYogaPoseInput!): YogaPose!
+  deleteYogaPose(id: ID!): Boolean!
   createUserYogaPose(createUserYogaPoseInput: CreateUserYogaPoseInput!): UserYogaPose!
   deleteUserYogaPose(id: ID!): Boolean!
   createAchievement(createAchievementInput: CreateAchievementInput!): Achievement!
-  updateAchievement(id: Float!, input: UpdateAchievementInput!): Achievement!
-  deleteAchievement(id: Int!): Boolean!
+  updateAchievement(id: String!, input: UpdateAchievementInput!): Achievement!
+  deleteAchievement(id: ID!): Boolean!
 }
 
 input SignupCredentialsDto {
@@ -114,7 +107,7 @@ input UpdateYogaPoseInput {
   poseDescription: String
   poseImagePath: String
   posePoints: Int
-  poseId: Int!
+  poseId: ID!
 }
 
 input CreateUserYogaPoseInput {
@@ -124,20 +117,13 @@ input CreateUserYogaPoseInput {
 }
 
 input CreateAchievementInput {
+  achievementId: String!
   achievementName: String!
   achievementPoints: Int!
-  conditions: [ConditionInput!]!
-}
-
-input ConditionInput {
-  poseId: ID!
-  executionCount: Int!
-  achievementId: ID!
 }
 
 input UpdateAchievementInput {
+  achievementId: ID!
   achievementName: String
   achievementPoints: Int
-  conditions: [ConditionInput!]
-  achievementId: Int!
 }

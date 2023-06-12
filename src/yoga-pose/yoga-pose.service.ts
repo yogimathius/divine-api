@@ -20,8 +20,9 @@ export class YogaPoseService {
     return this.yogaPoseRepository.find();
   }
 
-  async findById(id: number): Promise<YogaPose> {
-    return this.yogaPoseRepository.findOneBy({ poseId: id });
+  async findById(id: string): Promise<YogaPose> {
+    this.logger.verbose('typ of ID: ', id);
+    return this.yogaPoseRepository.findOneBy({ id });
   }
 
   async findByName(poseName: string): Promise<YogaPose> {
@@ -34,14 +35,14 @@ export class YogaPoseService {
   }
 
   async update(
-    id: number,
+    id: string,
     yogaPoseData: UpdateYogaPoseInput,
   ): Promise<YogaPose> {
     await this.yogaPoseRepository.update(id, yogaPoseData);
-    return this.yogaPoseRepository.findOneBy({ poseId: id });
+    return this.yogaPoseRepository.findOneBy({ id });
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.yogaPoseRepository.delete(id);
   }
 }

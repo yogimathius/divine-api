@@ -20,7 +20,7 @@ export class AchievementService {
     return this.achievementRepository.find();
   }
 
-  async findById(id: number): Promise<Achievement> {
+  async findById(id: string): Promise<Achievement> {
     return this.achievementRepository.findOneBy({ achievementId: id });
   }
 
@@ -46,14 +46,14 @@ export class AchievementService {
   }
 
   async update(
-    id: number,
+    id: string,
     achievementInput: UpdateAchievementInput,
   ): Promise<Achievement> {
     await this.achievementRepository.update(id, achievementInput);
     return this.achievementRepository.findOneBy({ achievementId: id });
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.achievementRepository.delete(id);
   }
 }

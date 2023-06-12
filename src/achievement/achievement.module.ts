@@ -7,7 +7,7 @@ import { AchievementResolver } from './achievement.resolver';
 import { YogaPoseService } from 'src/yoga-pose/yoga-pose.service';
 import { YogaPose } from 'src/yoga-pose/entities/yoga-pose.entity';
 import { ClearAchievementDbService } from 'src/database/clear-achievement-database.service';
-import { Condition } from './entities/condition.entity';
+import { Condition } from '../condition/entities/condition.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Achievement, YogaPose, Condition])],

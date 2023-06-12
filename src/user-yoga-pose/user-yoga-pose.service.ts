@@ -58,17 +58,17 @@ export class UserYogaPoseService {
     return this.userYogaPoseRepository.find();
   }
 
-  async findUserYogaPoses(userId: number): Promise<UserYogaPose[]> {
+  async findUserYogaPoses(userId: string): Promise<UserYogaPose[]> {
     return this.userYogaPoseRepository.find({
       where: { user: { id: userId } },
       relations: ['user', 'pose'],
     });
   }
-  // async findUserYogaPoseById(id: number): Promise<UserYogaPose> {
+  // async findUserYogaPoseById(id: string): Promise<UserYogaPose> {
   //   return this.userYogaPoseRepository.findOne(id);
   // }
 
-  async deleteUserYogaPose(id: number): Promise<void> {
+  async deleteUserYogaPose(id: string): Promise<void> {
     await this.userYogaPoseRepository.delete(id);
   }
 }
